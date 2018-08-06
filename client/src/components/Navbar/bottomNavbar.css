@@ -1,0 +1,15 @@
+.fa-briefcase-medical, .fa-utensils, .fa-plus-square {
+    color: white;
+    font-size: 30px;
+}
+
+.icon-space {
+    margin: 0 20px 0 20px;
+}
+
+.navbar-bottom {
+    height: 60px;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}

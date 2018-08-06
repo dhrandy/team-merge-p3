@@ -1,0 +1,15 @@
+.jumbotron {
+    background-image: url(/imgs/header.jpg);
+    background-size: cover;
+    height: 200px;
+    position: relative;
+}
+
+.time {
+    position: absolute;
+    left: 15px;
+    top:15px;;
+    padding: 10px;
+    background-color: white;
+    font-size: 14px;
+}
