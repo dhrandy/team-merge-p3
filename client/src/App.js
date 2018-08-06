@@ -4,11 +4,8 @@ import Wrapper from "./components/Wrapper/Wrapper"
 import Login from "./components/Login/Login"
 import Register from "./components/Register/Register"
 import Header from "./components/Header/Header"
-import BottomNavbar from "./components/Navbar/BottomNavbar"
-import TopNavbar from "./components/Navbar/TopNavbar"
-
-// import logo from './logo.svg';
-import './App.css';
+import BottomNavbar from "./components/Navbar/Bottom/BottomNavbar"
+import TopNavbar from "./components/Navbar/Top/TopNavbar"
 
 const App = () => (
   <Router>
