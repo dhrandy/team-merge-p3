@@ -1,17 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './header.css'
 
-const Header = (props) => {
-
+export default class Header extends Component {
+  render() {
     return (
-      <div>
+      <React.Fragment>
         <div className='jumbotron'>
-        <div className= "time">{(new Date()).toLocaleString()}</div>
-
+          <div className= "time">{(new Date()).toLocaleString()}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
+  };
 };
-
-
-export default Header;
