@@ -5,6 +5,7 @@ const passport = require("passport")
 const jwt = require("jsonwebtoken")
 
 const User = require("../../models/user")
+const Prescription = require("../../models/prescription")
 
 //Register
 router.post("/register", (req, res, next) => {
@@ -65,6 +66,21 @@ console.log(`DEBUG - users.js - ${process.env.MONGODB_SECRET}`);
 //profile
 router.get("/profile", passport.authenticate("jwt", {session:false}), (req, res, next) => {
     res.json({user: req.user})
+})
+
+//
+//Test user Data pull
+// TODO double check that this is the correct location for this code
+//
+router.get("/getUserData/:id", (req,res) => {
+   console.log( 'DEBUG - getUserData ', req.params.id );
+   let email = req.params.id;
+   User.findOne({email})
+       .populate('prescriptions')
+       .then( dbUser => {
+           console.log(dbUser)
+           res.json(dbUser)
+       })
 })
 
 module.exports = router
