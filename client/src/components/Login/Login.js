@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import './login.css'
 
@@ -16,6 +17,7 @@ class Login extends Component {
 	};
 
 	signIn = () => {
+		let email = this.state.email;
 		console.log(`DEBUG - signIn()`, JSON.stringify(this.state));
 		//
 		// this is not using AXIOS therefore must specify /api/... to match server side
@@ -28,7 +30,17 @@ class Login extends Component {
 		method: "POST",
 		body: JSON.stringify(this.state)
 		})
-		.then(function(res){ console.log('DEBUG - success ', res) })
+		.then(function(res){ 
+			//
+			// This is a TEST to ensure we can read data from the DB
+			//
+			console.log(email);
+			API.getUserData(email)
+			   .then( results => {
+				   console.log(	'DEBUG - signIn() - getUserData', results );
+			   })
+
+		})
 		.catch(function(res){ console.log('DEBUG - failed ', res) })
 	}
 
