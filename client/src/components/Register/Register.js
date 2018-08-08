@@ -5,7 +5,6 @@ import './register.css'
 class Register extends Component {
 	state = {
 		name: "",
-		username: "",
 		email: "",
 		password: ""
 	};
@@ -40,13 +39,9 @@ class Register extends Component {
 				<h3>Sign Up</h3>
                 <hr />
 				<form>
-                <div className="form-group">
+					<div className="form-group">
 						<label id="nameInput">Name</label>
 						<input type="text" className="form-control" id="name"  placeholder="Enter name" name="name" value={this.state.name} onChange={this.handleInputChange} />
-					</div>
-                    <div className="form-group">
-						<label id="userNameInput">User Name</label>
-						<input type="text" className="form-control" id="user-name" placeholder="Enter User Name" name="username" value={this.state.username} onChange={this.handleInputChange} />
 					</div>
 					<div className="form-group">
 						<label id="InputEmail1">Email address</label>
@@ -56,6 +51,10 @@ class Register extends Component {
 					<div className="form-group">
 						<label id="InputPassword1">Password</label>
 						<input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+					</div>
+					<div className="form-group">
+						<label id="InputPassword1">Confirm Password</label>
+						<input type="password" className="form-control" id="password2" placeholder="Confirm Password" name="password2" />
 					</div>
 					<div id="login-links">
 						<br />
