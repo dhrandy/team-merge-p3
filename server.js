@@ -7,11 +7,10 @@ const passport = require("passport")
 const mongoose = require("mongoose")
 const routes = require("./server/routes");
 
-const users = require("./server/routes/api/users");
-
 // DB CONFIG
-const db = require("./server/config/keys").mongoURI
+//const db = require("./server/config/keys").mongoURI
 
+console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
 //CONNECT TO Mongo
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
@@ -30,6 +29,7 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 //BODYPARSER CHEAT CODES
+app.use(bodyParser.urlencoded({ extended: true}))
 app.use(bodyParser.json())
 
 //PASSPORT
@@ -39,7 +39,7 @@ app.use(passport.session())
 require("./server/config/passport")(passport)
 
 //USER ROUTES
-app.use("/api/users", users)
+app.use(routes)
 
 // INDEX ROUTE
 app.get("/", (req, res) => {

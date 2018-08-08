@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+//import API from "../../utils/API";
 import { Link } from "react-router-dom";
 import './register.css'
 
@@ -6,7 +7,8 @@ class Register extends Component {
 	state = {
 		name: "",
 		email: "",
-		password: ""
+		password: "",
+		password2: ""
 	};
 
 	handleInputChange = event => {
@@ -29,8 +31,9 @@ class Register extends Component {
 		method: "POST",
 		body: JSON.stringify(this.state)
 		})
-		.then(function(res){ console.log(res) })
-		.catch(function(res){ console.log(res) })
+		// API.registerUser(this.state)
+		.then( res => console.log('createAccount() response = ', res) )
+		.catch( err => console.log('createAccount() error = ', err) )
 	};
 
 	render() {
@@ -54,7 +57,7 @@ class Register extends Component {
 					</div>
 					<div className="form-group">
 						<label id="InputPassword1">Confirm Password</label>
-						<input type="password" className="form-control" id="password2" placeholder="Confirm Password" name="password2" />
+						<input type="password" className="form-control" id="password2" placeholder="Confirm Password" name="password2" value={this.state.password2} onChange={this.handleInputChange} />
 					</div>
 					<div id="login-links">
 						<br />
