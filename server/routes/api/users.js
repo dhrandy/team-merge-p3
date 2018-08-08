@@ -4,12 +4,12 @@ const router = express.Router()
 const passport = require("passport")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const config = require("../../config/keys")
 
 const validateRegisterInput = require("../../validation/register")
 
 
 const User = require("../../models/user")
+const Prescription = require("../../models/prescription")
 
 
 // **** REGISTER ****
@@ -17,21 +17,23 @@ const User = require("../../models/user")
 //@description		Register user
 //@access			Public
 router.post("/register", (req, res) => {
+	console.log('DEBUG - routes/api/users.js register', req.body)
 	const {errors, isValid} = validateRegisterInput(req.body)
 	if(!isValid) {
+	    console.log('DEBUG - routes/api/users.js register', errors)
 		return res.status(400).json(errors)
 	}
 	User.findOne({email: req.body.email})
 		.then(user => {
 			if(user) {
 				errors.email = "Email already exists"
+				console.log(errors.email)
 				return res.status(400).json(errors)
 			}
 			else {
 				const newUser = new User({
 					name: req.body.name,
 					email: req.body.email,
-					username: req.body.username,
 					password: req.body.password
 				})
 
@@ -40,8 +42,8 @@ router.post("/register", (req, res) => {
 						if(err) throw err
 						newUser.password = hash
 						newUser.save()
-							.then(user => res.json(user))
-							.catch(err => console.log(err))
+							.then(user => { res.json(user) })
+							.catch(err => { res.json(err) })
 					})
 				})
 			}
@@ -68,12 +70,12 @@ router.post("/authenticate", (req, res, next) => {
 				bcrypt.compare(password, user.password)
 					.then(isMatch => {
 						if(isMatch) {
-console.log(`DEBUG - users.js - ${process.env.MONGODB_SECRET}`);
+                            console.log(`DEBUG - users.js - ${process.env.MONGODB_SECRET}`);
 
 							const payload = {id: user.id, name: user.name}
 
 							//Sign Token
-							jwt.sign(payload, config.secret, {expiresIn: 86400}, (err, token) => {
+							jwt.sign(payload, process.env.MONGODB_SECRET, {expiresIn: 86400}, (err, token) => {
 								res.json({
 									success: true,
 									token: "Bearer " + token 
@@ -106,5 +108,22 @@ router.get("/current", passport.authenticate("jwt", {session:false}), (req, res,
 	})
 })
 
+////////////////////////////////////////////////////////////////////////////
+// Please do not remove
+//
+//Test user Data pull
+// TODO double check that this is the correct location for this code
+//
+////////////////////////////////////////////////////////////////////////////
+router.get("/getUserData/:id", (req,res) => {
+	console.log( 'DEBUG - getUserData ', req.params.id );
+	let email = req.params.id;
+	User.findOne({email})
+		.populate('prescriptions')
+		.then( dbUser => {
+			console.log(dbUser)
+			res.json(dbUser)
+		})
+ })
 
 module.exports = router
