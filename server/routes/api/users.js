@@ -7,6 +7,8 @@ const bcrypt = require("bcryptjs")
 const config = require("../../config/keys")
 
 const validateRegisterInput = require("../../validation/register")
+const validateLoginInput = require("../../validation/login")
+
 
 
 const User = require("../../models/user")
@@ -31,7 +33,6 @@ router.post("/register", (req, res) => {
 				const newUser = new User({
 					name: req.body.name,
 					email: req.body.email,
-					username: req.body.username,
 					password: req.body.password
 				})
 
@@ -53,6 +54,11 @@ router.post("/register", (req, res) => {
 //@description		Authenticate user and returns JWT token
 //@access			Public
 router.post("/authenticate", (req, res, next) => {
+	const {errors, isValid} = validateLoginInput(req.body)
+	if(!isValid) {
+		return res.status(400).json(errors)
+	}
+
 	const email = req.body.email
 	const password = req.body.password
 
@@ -68,7 +74,6 @@ router.post("/authenticate", (req, res, next) => {
 				bcrypt.compare(password, user.password)
 					.then(isMatch => {
 						if(isMatch) {
-console.log(`DEBUG - users.js - ${process.env.MONGODB_SECRET}`);
 
 							const payload = {id: user.id, name: user.name}
 

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors")
 const passport = require("passport")
 const mongoose = require("mongoose")
-const routes = require("./server/routes");
+// const routes = require("./server/routes");
 
 const users = require("./server/routes/api/users");
 
@@ -14,7 +14,8 @@ const db = require("./server/config/keys").mongoURI
 
 //CONNECT TO Mongo
 mongoose
-    .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
+    // .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
+    .connect(db)
     .catch( (err) => {
         console.log( err );
     });
@@ -30,7 +31,9 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 //BODYPARSER CHEAT CODES
+app.use(bodyParser.urlencoded({encoded: false}))
 app.use(bodyParser.json())
+
 
 //PASSPORT
 app.use(passport.initialize())
