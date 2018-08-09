@@ -1,63 +1,53 @@
 import React, { Component } from 'react'
-import API from "../../utils/API";
-import { Link } from "react-router-dom";
 import './login.css'
+import axios from "axios"
+import classnames from "classnames"
+
 
 class Login extends Component {
-	state = {
-		email: "",
-		password: ""
-	};
-
-	handleInputChange = event => {
-		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
-	};
-
-	signIn = () => {
-		let email = this.state.email;
-		console.log(`DEBUG - signIn()`, JSON.stringify(this.state));
-		//
-		// this is not using AXIOS therefore must specify /api/... to match server side
-		//
-		fetch("/api/authenticate", {
-    	headers: {
-			'Accept': 'application/json',
-			'Content-Type': 'application/json'
-		},
-		method: "POST",
-		body: JSON.stringify(this.state)
-		})
-		.then(function(res){ 
-			//
-			// This is a TEST to ensure we can read data from the DB
-			//
-			console.log(email);
-			API.getUserData(email)
-			   .then( results => {
-				   console.log(	'DEBUG - signIn() - getUserData', results );
-			   })
-
-		})
-		.catch(function(res){ console.log('DEBUG - failed ', res) })
+	constructor() {
+		super()
+		this.state = {
+			email: "",
+			password: "",
+			errors: {}
+		}
+		this.onChange = this.onChange.bind(this)
+		this.onSubmit = this.onSubmit.bind(this)
+	}
+	onChange(e) {
+		this.setState({[e.target.name]: e.target.value})
 	}
 
+	onSubmit(e) {
+		e.preventDefault()
+		const user = {
+			email: this.state.email,
+			password: this.state.password,
+		}
+		axios.post("/api/users/authenticate", user)
+			.then(res => console.log(res.data))
+			.catch(err => this.setState({errors: err.response.data}))
+	}
+
+	
+
 	render() {
+		const {errors} = this.state
 		return (
 			<div className="container" id="login-section">
 				<h3>Sign In</h3>
 				<hr />
-				<form>
+				<form onSubmit = {this.onSubmit}>
 					<div className="form-group">
 						<label id="exampleInputEmail1">Email address</label>
-						<input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} onChange={this.handleInputChange} />
-						<small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+						<input type="email" className={classnames("form-control", {"is-invalid": errors.email})} aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} onChange={this.onChange} />
+						{errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
 					</div>
 					<div className="form-group">
 						<label id="exampleInputPassword1">Password</label>
-						<input type="password" className="form-control" id="password" placeholder="Password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+						<input type="password" className={classnames("form-control", {"is-invalid": errors.password})} placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
+						{errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
 					</div>
 					<div id="login-links">
 						<div>	
@@ -65,9 +55,7 @@ class Login extends Component {
 						</div>	
 						<br />	
 						<div>	
-							<Link to={"/"}>
-							    <button type="button" className="btn btn-primary" id="sign-in" onClick={this.signIn}>Sign In</button>	
-							</Link>
+							<button type="submit" className="btn btn-primary" id="sign-in" >Sign In</button>	
 						</div>	
 						<br />	
 						<div>
