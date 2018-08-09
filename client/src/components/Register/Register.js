@@ -59,6 +59,7 @@ class Register extends Component {
 						<label>Confirm Password</label>
 						<input type="password" className={classnames("form-control", {"is-invalid": errors.password2})} placeholder="Confirm Password" name="password2" value={this.state.password2} onChange={this.onChange} />
 						{errors.name && (<div className="invalid-feedback">{errors.password2}</div>)}
+	
 					</div>
 					<div id="login-links">
 						<br />

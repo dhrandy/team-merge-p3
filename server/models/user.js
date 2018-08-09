@@ -13,7 +13,11 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    prescriptions: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Prescription'
+    }]
 })
 
 const User = module.exports = mongoose.model("User", UserSchema)
