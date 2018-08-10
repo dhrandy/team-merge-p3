@@ -1,6 +1,10 @@
 a.nav.navbar-nav.navbar-logo.mx-auto {
     color: white;
-    font-size: 76%;
+    font-size: 90%;
     text-transform: uppercase;
     text-align: center;
+}
+
+.navbar-logo {
+    font-weight: bold;
 }

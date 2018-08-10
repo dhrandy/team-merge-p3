@@ -5,7 +5,7 @@ export default class TopNavbar extends Component {
   render() {
     return (
       <nav className="navbar bg-dark navbar-dark flex-row-reverse">
-        <a className="nav navbar-nav navbar-logo mx-auto">Personal Prescription Planner</a>
+        <a className="nav navbar-nav navbar-logo mx-auto">Prescription Planner</a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span className="navbar-toggler-icon"></span>
           </button>
@@ -26,6 +26,11 @@ export default class TopNavbar extends Component {
             <li className="nav-item">
               <a className="nav-link" href="#">Health</a>
             </li> 
+            {/* Karina's  */}
+            <li className="nav-item">
+              <a className="nav-link" href="/add">Add a Medication</a>
+            </li> 
+            {/* Karina's */}
           </ul>
         </div> 
       </nav>
