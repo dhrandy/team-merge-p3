@@ -5,11 +5,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors")
 const passport = require("passport")
 const mongoose = require("mongoose")
-// const routes = require("./server/routes");
-const users = require("./server/routes/api/users");
+const routes = require("./server/routes");
 
-
-// console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
+console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
 //CONNECT TO Mongo
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
@@ -41,8 +39,7 @@ app.use(passport.session())
 require("./server/config/passport")(passport)
 
 //USER ROUTES
-// app.use(routes)
-app.use("/api/users", users)
+app.use(routes)
 
 // INDEX ROUTE
 app.get("/", (req, res) => {
