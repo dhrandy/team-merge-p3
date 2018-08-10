@@ -6,8 +6,7 @@ import Register from "./components/Register/Register"
 import Header from "./components/Header/Header"
 import BottomNavbar from "./components/Navbar/Bottom/BottomNavbar"
 import TopNavbar from "./components/Navbar/Top/TopNavbar"
-import Prescription from './components/Prescription/Prescription';
-import HomePage from './components/HomePage/Home';
+import Account from "./components/Account/Account"
 
 const App = () => (
   <Router>
