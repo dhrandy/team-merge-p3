@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import PPApp from "./pages/App/App";
-import HomePage from "./pages/HomePage/HomePage"
+import PPApp from "../../pages/App/App";
 
-const App = () => (
+const HomePage = () => (
   <Router>
-
     <React.Fragment>
     <Route exact path="/app-home" component={PPApp} />
-    <Route exact path="/" component={HomePage} />
+    <a href="/app-home">Link to App</a>
     </React.Fragment>
   </Router>
 );
 
 
-export default App;
+export default HomePage;

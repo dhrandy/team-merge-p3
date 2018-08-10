@@ -3,84 +3,132 @@ const express = require("express")
 const router = express.Router()
 const passport = require("passport")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
+
+const validateRegisterInput = require("../../validation/register")
+const validateLoginInput = require("../../validation/login")
+
+
 
 const User = require("../../models/user")
 const Prescription = require("../../models/prescription")
 
-//Register
-router.post("/register", (req, res, next) => {
-    let newUser = new User ({
-        name: req.body.name,
-        email: req.body.email,
-        username: req.body.username,
-        password: req.body.password
-    })
 
-    User.addUser(newUser, (err, user) => {
-        if(err) {
-            res.json({success: false, msg: "Failed to register User"})
-        }
-        else {
-            res.json({success: true, msg: "User registered"})
-        }
-    })
+// **** REGISTER ****
+//@route				POST api/users/register
+//@description		Register user
+//@access			Public
+router.post("/register", (req, res) => {
+	console.log('DEBUG - routes/api/users.js register', req.body)
+	const {errors, isValid} = validateRegisterInput(req.body)
+	if(!isValid) {
+	    console.log('DEBUG - routes/api/users.js register', errors)
+		return res.status(400).json(errors)
+	}
+	User.findOne({email: req.body.email})
+		.then(user => {
+			if(user) {
+				errors.email = "Email already exists"
+				console.log(errors.email)
+				return res.status(400).json(errors)
+			}
+			else {
+				const newUser = new User({
+					name: req.body.name,
+					email: req.body.email,
+					password: req.body.password
+				})
+
+				bcrypt.genSalt(10, (err, salt) => {
+					bcrypt.hash(newUser.password, salt, (err, hash) => {
+						if(err) throw err
+						newUser.password = hash
+						newUser.save()
+							.then(user => { res.json(user) })
+							.catch(err => { res.json(err) })
+					})
+				})
+			}
+		})
 })
 
-//AUTHENTICATION
+// **** AUTHENTICATE ****
+//@route    		POST api/users/authenticate
+//@description		Authenticate user and returns JWT token
+//@access			Public
 router.post("/authenticate", (req, res, next) => {
-    const username = req.body.username
-    const password = req.body.password
+	const {errors, isValid} = validateLoginInput(req.body)
+	if(!isValid) {
+		return res.status(400).json(errors)
+	}
 
-    User.getUserByUsername (username, (err, user) => {
-        if(err) throw err
-        if(!user) {
-            return res.json({sucess: false, msg: "User not found"})
-        }
+	const email = req.body.email
+	const password = req.body.password
 
-        User.comparePassword(password, user.password, (err, isMatch) => {
-            if(err) throw err
-            if(isMatch) {
-console.log(`DEBUG - users.js - ${process.env.MONGODB_SECRET}`);
-                const token = jwt.sign(user.toJSON(), process.env.MONGODB_SECRET, {
-                    expiresIn:86400 // ONE DAY WORTH OF SECONDS
-                })
+	//find user
+	User.findOne({email})
+		.then(user => {
+			//Check for user
+			if(!user) {
+				return res.status(404).json({email: "User email not found"})
+			}
+			//Check password
+			else {
+				bcrypt.compare(password, user.password)
+					.then(isMatch => {
+						if(isMatch) {
+							const payload = {id: user.id, name: user.name}
 
-                res.json({
-                    success: true,
-                    toekn: "JWT " + token,
-                    user: {
-                        id: user.id,
-                        name: user.name,
-                        username: user.username,
-                        email: user.email
-                    }
-                })
-            }
-            else {
-                return res.json({sucess: false, msg: "Password is Invalid"})
-            }
-        })
-    })
+							//Sign Token
+							jwt.sign(payload, process.env.MONGODB_SECRET, {expiresIn: 86400}, (err, token) => {
+								res.json({
+									success: true,
+									token: "Bearer " + token 
+								})
+							})
+						}
+						else {
+							return res.status(400).json({password: "Invalid Password"})
+						}
+					})
+			}
+		})
 })
+
 
 //profile
 router.get("/profile", passport.authenticate("jwt", {session:false}), (req, res, next) => {
     res.json({user: req.user})
 })
 
+// **** Current ****
+//@route				GET api/users/current
+//@description		Return current user
+//@access			Private
+router.get("/current", passport.authenticate("jwt", {session:false}), (req, res, next) => {
+	res.json({
+		id: req.user.id,
+		name: req.user.name,
+		email: req.user.email
+	})
+})
+
+////////////////////////////////////////////////////////////////////////////
+// Please do not remove
 //
 //Test user Data pull
 // TODO double check that this is the correct location for this code
 //
+////////////////////////////////////////////////////////////////////////////
 router.get("/getUserData/:id", (req,res) => {
-   console.log( 'DEBUG - getUserData ', req.params.id );
-   let email = req.params.id;
-   User.findOne({email})
-       .populate('prescriptions')
-       .then( dbUser => {
-           console.log(dbUser)
-           res.json(dbUser)
-       })
-})
+	console.log( 'DEBUG - getUserData ', req.params.id );
+	let email = req.params.id;
+	User.findOne({email})
+		.populate('prescriptions')
+		.then( dbUser => {
+			console.log(dbUser)
+			res.json(dbUser)
+		})
+ })
 
 module.exports = router
