@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage/HomePage"
 
 const App = () => (
   <Router>
+
     <React.Fragment>
     <Route exact path="/app-home" component={PPApp} />
     <Route exact path="/" component={HomePage} />
