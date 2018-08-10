@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router2, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import Register from "../../components/Register/Register";
 import Header from "../../components/Header/Header";
@@ -8,7 +8,7 @@ import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 import Home from "../../components/HomePage/Home.js";
 
 const PPApp = () => (
-    <Router2>
+    <Router>
       <div>
         <TopNavbar />
         <Header />
@@ -20,7 +20,7 @@ const PPApp = () => (
         </Wrapper>
         <BottomNavbar />
       </div>
-    </Router2>
+    </Router>
   );
   
   
