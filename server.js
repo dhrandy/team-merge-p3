@@ -5,16 +5,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors")
 const passport = require("passport")
 const mongoose = require("mongoose")
-// const routes = require("./server/routes");
-
-// DB CONFIG
-//const db = require("./server/config/keys").mongoURI
+const routes = require("./server/routes");
 
 console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
 //CONNECT TO Mongo
 mongoose
-    // .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
-    .connect(db)
+    .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
     .catch( (err) => {
         console.log( err );
     });
