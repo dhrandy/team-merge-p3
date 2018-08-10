@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+DrugBank
 
 # testing
 coverage
@@ -17,6 +18,7 @@ build
 .env.test.local
 .env.production.local
 .vscode
+keys.js
 
 npm-debug.log*
 yarn-debug.log*

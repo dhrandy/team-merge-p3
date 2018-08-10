@@ -14,6 +14,7 @@ const App = () => (
       <TopNavbar />
       <Header />
       <Wrapper>
+        <Route exact path="/" component={HomePage} />
         {/* <Route exact path="/" component={About} /> */}
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
