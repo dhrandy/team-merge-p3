@@ -1,3 +1,9 @@
 #login-links {	
     text-align: center;	
 }
+.label {
+    text-align: left !important;
+}
+.form-control {
+    text-align: left;
+}

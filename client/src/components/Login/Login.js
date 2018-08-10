@@ -40,12 +40,12 @@ class Login extends Component {
 				<hr />
 				<form onSubmit = {this.onSubmit}>
 					<div className="form-group">
-						<label id="exampleInputEmail1">Email address</label>
+						<label className="label">Email address</label>
 						<input type="email" className={classnames("form-control", {"is-invalid": errors.email})} aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} onChange={this.onChange} />
 						{errors.email && (<div className="invalid-feedback">{errors.email}</div>)}
 					</div>
 					<div className="form-group">
-						<label id="exampleInputPassword1">Password</label>
+						<label className="label">Password</label>
 						<input type="password" className={classnames("form-control", {"is-invalid": errors.password})} placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
 						{errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
 					</div>
@@ -55,7 +55,7 @@ class Login extends Component {
 						</div>	
 						<br />	
 						<div>	
-							<button type="submit" className="btn btn-primary" id="sign-in" >Sign In</button>	
+							<button type="submit" className="btn btn-primary">Sign In</button>	
 						</div>	
 						<br />	
 						<div>
