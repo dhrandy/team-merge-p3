@@ -6,6 +6,7 @@ import Register from "./components/Register/Register"
 import Header from "./components/Header/Header"
 import BottomNavbar from "./components/Navbar/Bottom/BottomNavbar"
 import TopNavbar from "./components/Navbar/Top/TopNavbar"
+import Account from "./components/Account/Account"
 
 const App = () => (
   <Router>
@@ -17,6 +18,7 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         {/* <Route exact path="/search" component={Search} /> */}
+        <Route exact path="/account" component={Account} />
       </Wrapper>
       <BottomNavbar />
     </div>
