@@ -7,6 +7,8 @@ import Header from "./components/Header/Header"
 import BottomNavbar from "./components/Navbar/Bottom/BottomNavbar"
 import TopNavbar from "./components/Navbar/Top/TopNavbar"
 import Prescription from './components/Prescription/Prescription';
+import HomePage from './components/HomePage/Home';
+
 
 const App = () => (
   <Router>
