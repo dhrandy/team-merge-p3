@@ -2,11 +2,10 @@ require('dotenv').config();
 const JwtStrategy = require("passport-jwt").Strategy
 const ExtractJwt = require("passport-jwt").ExtractJwt
 const User = require("../models/user")
-const config = require("./keys")
 
 const opts = {}
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken()
-opts.secretOrKey = config.secret
+opts.secretOrKey = process.env.MONGODB_SECRET
 
 module.exports = (passport) => {
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {

@@ -26,6 +26,11 @@ export default class TopNavbar extends Component {
             <li className="nav-item">
               <a className="nav-link" href="#">Health</a>
             </li> 
+            {/* Karina's  */}
+            <li className="nav-item">
+              <a className="nav-link" href="/add">Add a Medication</a>
+            </li> 
+            {/* Karina's */}
           </ul>
         </div> 
       </nav>
