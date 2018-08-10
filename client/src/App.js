@@ -18,7 +18,7 @@ const App = () => (
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         {/* <Route exact path="/search" component={Search} /> */}
-      <Route exact path="/add" component={Prescription} />
+        <Route exact path="/add" component={Prescription} />
       </Wrapper>
       <BottomNavbar />
     </div>
