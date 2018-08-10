@@ -25,7 +25,7 @@ class Counter extends Component {
       <input type="text" id="quantity" name="quantity" size="2" value="1" min="1" max="100" />
 
       <span class="input-group-btn">
-        <button onClick={this.decrement} type="button" class="quantity-right-plus btn btn-secondary btn-number" data-type="plus" data-field="">
+        <button onClick={this.decrement} type="button" class= "btn btn-secondary btn-number" data-type="plus" data-field="">
         -
         </button>
       </span>
