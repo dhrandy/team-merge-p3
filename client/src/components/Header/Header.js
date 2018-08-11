@@ -15,7 +15,7 @@ export default class Header extends Component {
         </div>
       </React.Fragment>
     );
-  };
-};
+  }
+}
 
 // (new Date()).toLocaleString()
