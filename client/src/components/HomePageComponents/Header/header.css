@@ -1,0 +1,12 @@
+.jumbotron-home {
+    background-image: url(/imgs/homepage/planner2.jpg);
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    margin-bottom: 0;
+}
+
+#title-shadow {
+    font-size: 50px;
+    font-weight: bold;
+}
