@@ -1,0 +1,16 @@
+.left-article, .middle-article, .right-article {
+    color: white;
+    height: 250px;
+}
+
+.left-article {
+    background-color: #70c4e9;
+}
+
+.middle-article {
+    background-color: #74a0d1;
+}
+
+.right-article {
+    background-color: #827dbd;
+}

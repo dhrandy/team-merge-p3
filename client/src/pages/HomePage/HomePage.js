@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import PPApp from "../../pages/App/App";
+import React from 'react';
+import './homepage.css'
+import HeaderHome from '../../components/HomePageComponents/Header/HeaderHome';
+import NavHome from '../../components/HomePageComponents/Nav/NavHome';
+import Article from '../../components/HomePageComponents/Article/Article';
+
 
 const HomePage = () => (
-  <Router>
+    
     <React.Fragment>
-    <Route exact path="/app-home" component={PPApp} />
-    <a href="/app-home">Link to App</a>
+    <HeaderHome />
+    <NavHome />
+    <Article />
+    <footer>
+      Copyright 2018 | Personal Planner
+    </footer>
     </React.Fragment>
-  </Router>
 );
 
 
