@@ -8,12 +8,10 @@ import AccountPage from "./pages/Account/Account"
 import FoodPage from "./pages/Food/Food"
 import MedicationPage from "./pages/Food/Food"
 import ActivityPage from "./pages/Activity/Activity"
-
-
+import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 
 const App = () => (
   <Router>
-
     <React.Fragment>
       <Route exact path="/app-home" component={PPApp} />
       <Route exact path="/" component={HomePage} />
@@ -23,11 +21,9 @@ const App = () => (
       <Route exact path="/food" component={FoodPage} />
       <Route exact path="/medication" component={MedicationPage} />
       <Route exact path="/activity" component={ActivityPage} />
-
-
-    </React.Fragment>
+      <Route exact path="/prescription" component={PrescriptionPage} />
+  </React.Fragment>
   </Router>
 );
-
 
 export default App;
