@@ -18,3 +18,4 @@ class Activity extends Component {
 export default Activity
 
 // size="50"
+
