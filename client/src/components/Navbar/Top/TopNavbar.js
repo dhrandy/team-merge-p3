@@ -32,5 +32,5 @@ export default class TopNavbar extends Component {
         </div> 
       </nav>
     );
-  };
-};
+  }
+}
