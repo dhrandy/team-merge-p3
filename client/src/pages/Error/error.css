@@ -1,0 +1,22 @@
+#error-background {
+    height: 700px;
+    background-color: black;
+}
+
+#error-four {
+    font-size: 200px;
+}
+
+#error-text {
+    font-size: 20px;
+}
+
+.error-large {
+    font-size: 50px;
+}
+
+#error-text, #error-four {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}

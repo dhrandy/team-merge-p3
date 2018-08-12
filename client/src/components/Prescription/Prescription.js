@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
 import './prescription.css'
 import Counter from '../Counter/Counter'
 
@@ -47,7 +46,7 @@ state = {
           
         </form>
       </div>
-    )
+    );
   }
 }
 

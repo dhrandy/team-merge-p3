@@ -16,5 +16,5 @@ export default class BottomNavbar extends Component {
         </nav>
       </div>
     );
-  };
-};
+  }
+}
