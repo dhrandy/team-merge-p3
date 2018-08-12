@@ -25,7 +25,7 @@ state = {
           <div>
             <h5> Dosage </h5>
               <br/>
-            <h6> Units </h6>
+            <h6> Amount </h6>
             <Counter />
               <br/>
             <h6>Frequency </h6>
