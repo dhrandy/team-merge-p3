@@ -18,7 +18,7 @@ class Main extends Component {
 
                 <div className='row'>
                     <div className='col-md'>
-                        <table class="table table-striped">
+                        <table className="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Prescription</th>
