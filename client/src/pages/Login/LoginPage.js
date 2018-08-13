@@ -5,16 +5,18 @@ import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const LoginPage = () => (
+const LoginPage = props => {
+  return(
     <Router>
       <div>
         <TopNavbar />
         <Header />
-        <Login />
+        <Login action={props.action} />
         <BottomNavbar />
       </div>
     </Router>
-  );
+  )
+}
   
   
   export default LoginPage;
