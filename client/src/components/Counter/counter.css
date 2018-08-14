@@ -1,6 +1,10 @@
-
+ 
 .input-group {
   text-align: center;
-  width: 100px;
+  width: 30%;
   margin: auto;
+}
+
+#number {
+  font-size: 25px;
 }
