@@ -12,15 +12,37 @@ import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
 
 export default class App extends Component {
+  state = {
+    email: "",
+    token: ""
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //  record the client login data so that the application knows which specific user is sending 
+  //  requests
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  setUserState = (clientObj) => {
+    console.log(`DEBUG - App.js setUserInfo - `, clientObj)
+    this.setState(clientObj)
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  //  Construct LoginPage component and pass the reference back to the function that will set the 
+  //  state of the user... this will allow us to pass the web token to all child components
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  loginPageWithCallback = () => {
+    return(<LoginPage action={this.setUserState} />)
+  }
+
   render() {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
           <Route path="/app-home" component={PPApp} />
           <Route exact path="/account" component={AccountPage} />
           <Route exact path="/food" component={FoodPage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/login" component={this.loginPageWithCallback} />
           <Route exact path="/medication" component={MedicationPage} />
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={RegisterPage} />

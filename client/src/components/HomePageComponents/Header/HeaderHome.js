@@ -19,7 +19,7 @@ export default class HeaderHome extends Component {
         </ul>
       </h5>
       <p>
-        <a href="/login"><button type="button" class="btn btn-info">APP LOGIN</button></a>
+        <a href="/login"><button type="button" className="btn btn-info">APP LOGIN</button></a>
       </p>
       </div>
       </div>
