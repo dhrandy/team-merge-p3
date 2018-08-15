@@ -10,11 +10,18 @@ import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
+import axios from "axios"
 
 export default class App extends Component {
   state = {
-    email: "",
-    token: ""
+    token: "",
+    userData: {
+      _id: "",
+      name: "",
+      email: "",
+      password: "",
+      prescriptions: []
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,10 +29,13 @@ export default class App extends Component {
   //  requests
   //////////////////////////////////////////////////////////////////////////////////////////////////
   setUserState = (clientObj) => {
-    console.log(`DEBUG - App.js setUserInfo - `, clientObj)
-    this.setState(clientObj)
-    //this.transitionTo('/medication')
-    console.log(this.state)
+    axios.get("/api/users/getUserData/"+clientObj.email)
+         .then( res => {
+            let userData = res.data
+            this.setState({token: clientObj.token, userData})
+            console.log(this.state)
+         })
+         .catch( err => console.log(err) )
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -33,15 +43,15 @@ export default class App extends Component {
   //  state of the user... this will allow us to pass the web token to all child components
   //////////////////////////////////////////////////////////////////////////////////////////////////
   loginPageWithCallback = () => {
-    return(<LoginPage userData={this.state} action={this.setUserState} />)
+    return(<LoginPage userState={this.state} action={this.setUserState} />)
   }
 
   medicationPageWithUserData = () => {
-    return(<MedicationPage userData={this.state} />)
+    return(<MedicationPage userState={this.state} />)
   }
 
   prescriptionPageWithUserData = () => {
-    return(<PrescriptionPage userData={this.state} />)
+    return(<PrescriptionPage userState={this.state} />)
   }
 
   render() {
