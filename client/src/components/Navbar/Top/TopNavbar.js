@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import './topNavbar.css';
+import PropTypes from "prop-types"
+import {connect} from "react-redux"
+import {logoutUser} from "../../../actions/authActions"
 
-export default class TopNavbar extends Component {
+class TopNavbar extends Component {
   render() {
     return (
       <nav className="navbar bg-dark navbar-dark flex-row-reverse">
@@ -34,3 +37,15 @@ export default class TopNavbar extends Component {
     );
   };
 };
+
+TopNavbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, {logoutUser})((TopNavbar))
