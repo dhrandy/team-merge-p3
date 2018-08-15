@@ -1,19 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router } from "react-router-dom";
-import Login from "../../components/Login/Login";
+import Prescription from "../../components/Prescription/Prescription";
 import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const LoginPage = props => {
-  return(
+const PrescriptionPage = (props) => (
     <div>
       <TopNavbar />
       <Header />
-      <Login action={props.action} />
+      <Prescription />
       <BottomNavbar />
     </div>
-  )
-}
+  );
   
-  export default LoginPage;
+  
+  export default PrescriptionPage;

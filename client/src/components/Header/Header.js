@@ -3,21 +3,30 @@ import Clock from 'react-live-clock';
 import './header.css'
 
 export default class Header extends Component {
+  state = {
+    time: new Date().toLocaleTimeString()
+  }
+
+  componentDidMount = () => {
+    this.intervalID = setInterval( () => this.tick(), 1000 )
+  }
+
+  componentWillUnmount = () => {
+    clearInterval(this.intervalID)
+  }
+
+  tick = () => {
+    this.setState( {time: new Date().toLocaleTimeString()})
+  }
+
   render() {
-    // function tick() {
-    //   let time = (Date().toLocaleTimeString());
-    //   time.setInterval(tick, 1000);
-    // }
-    <Clock format={'HH:mm:ss'} ticking={true} timezone={'US/Eastern'} />
     return (
       <React.Fragment>
         <div className='jumbotron'>
-          <div className= "time"><time></time>
+          <div className= "time">{this.state.time}
           </div>
         </div>
       </React.Fragment>
     );
-  };
-};
-
-// (new Date()).toLocaleString()
+  }
+}

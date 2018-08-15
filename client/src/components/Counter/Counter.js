@@ -15,17 +15,17 @@ class Counter extends Component {
 
   render = () =>
   <div>
-    <div class="input-group">
-      <span class="input-group-btn">
-        <button onClick={this.increment} type="button" class="btn btn-secondary btn-number" data-type="minus" data-field="">
+    <div className="input-group">
+      <span className="input-group-btn">
+        <button onClick={this.increment} type="button" className="btn btn-secondary btn-number" data-type="minus" data-field="">
         +
         </button>
       </span>
 
       <input type="text" id="quantity" name="quantity" size="2" value="1" min="1" max="100" />
 
-      <span class="input-group-btn">
-        <button onClick={this.decrement} type="button" class= "btn btn-secondary btn-number" data-type="plus" data-field="">
+      <span className="input-group-btn">
+        <button onClick={this.decrement} type="button" className= "btn btn-secondary btn-number" data-type="plus" data-field="">
         -
         </button>
       </span>
