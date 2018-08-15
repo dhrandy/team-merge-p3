@@ -1,26 +1,33 @@
 import React, { Component } from 'react'
-import './register.css'
-import axios from "axios"
+import PropTypes from "prop-types"
+import {withRouter} from "react-router-dom"
 import classnames from "classnames"
+import {connect} from "react-redux"
+import {registerUser} from "../../actions/authActions"
+import './register.css'
 
 class Register extends Component {
-	constructor() {
-		super()
-		this.state = {
-			name: "",
-			email: "",
-			password: "",
-			password2: "",
-			errors: {}
-		}
-		this.onChange = this.onChange.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
+	state = {
+		name: "",
+		email: "",
+		password: "",
+		password2: "",
+		errors: {}
 	}
-	onChange(e) {
+	
+
+	// if we get errors from redux state set those errors to this state
+	componentWillReceiveProps(nextProps) {
+		if(nextProps.errors) {
+			this.setState({errors: nextProps.errors})
+		}
+	}
+
+	onChange = e => {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	onSubmit(e) {
+	onSubmit = e => {
 		e.preventDefault()
 		const newUser = {
 			name: this.state.name,
@@ -28,13 +35,14 @@ class Register extends Component {
 			password: this.state.password,
 			password2: this.state.password2
 		}
-		axios.post("/api/users/register", newUser)
-			.then(res => console.log(res.data))
-			.catch(err => this.setState({errors: err.response.data}))
+		//allows us to use this.props.history to redirect from this action
+		this.props.registerUser(newUser, this.props.history)
 	}
 
 	render() {
+
 		const {errors} = this.state
+		
 		return (
 			<div className="container" id="login-section">
 				<h3>Sign Up</h3>
@@ -53,12 +61,12 @@ class Register extends Component {
 					<div className="form-group">
 						<label>Password</label>
 						<input type="password" className={classnames("form-control", {"is-invalid": errors.password})} placeholder="Password" name="password" value={this.state.password} onChange={this.onChange} />
-						{errors.name && (<div className="invalid-feedback">{errors.password}</div>)}
+						{errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
 					</div>
 					<div className="form-group">
 						<label>Confirm Password</label>
 						<input type="password" className={classnames("form-control", {"is-invalid": errors.password2})} placeholder="Confirm Password" name="password2" value={this.state.password2} onChange={this.onChange} />
-						{errors.name && (<div className="invalid-feedback">{errors.password2}</div>)}
+						{errors.password2 && (<div className="invalid-feedback">{errors.password2}</div>)}
 	
 					</div>
 					<div id="login-links">
@@ -73,5 +81,18 @@ class Register extends Component {
 		)
 	}
 }
+//Mapping proptypes
+Register.propTypes = {
+	registerUser: PropTypes.func.isRequired,
+	auth: PropTypes.object.isRequired,
+	errors: PropTypes.object.isRequired
+}
 
-export default Register
+
+// Puts  state inside property (anything in that state will be accessible) this comes from the root reducer
+const mapStateToProps = (state) => ({
+	auth: state.auth,
+	errors: state.errors
+})
+
+export default connect(mapStateToProps, {registerUser})(withRouter(Register))

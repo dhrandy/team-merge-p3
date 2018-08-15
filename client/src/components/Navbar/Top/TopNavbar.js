@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import './topNavbar.css';
+import PropTypes from "prop-types"
+import {connect} from "react-redux"
+import {logoutUser} from "../../../actions/authActions"
 
-export default class TopNavbar extends Component {
+class TopNavbar extends Component {
   render() {
     return (
       <nav className="navbar bg-dark navbar-dark flex-row-reverse">
@@ -33,6 +36,21 @@ export default class TopNavbar extends Component {
         </div> 
       </nav>
     );
+  };
+};
+
+TopNavbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
+
+
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, {logoutUser})((TopNavbar))
+
   }
 }
 //              <a className="nav-link" href="/login">Login</a>
