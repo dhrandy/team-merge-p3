@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Wrapper from "../../components/Wrapper/Wrapper";
 import Register from "../../components/Register/Register";
 import Header from "../../components/Header/Header";
@@ -10,20 +10,18 @@ import Account from "../../components/Account/Account";
 
 
 const PPApp = () => (
-  <Router>
-    <div>
-      <TopNavbar />
-      <Header />
-      <Route exact path="/app-home" component={Home} />
-      <Wrapper>
-        {/* <Route exact path="/" component={About} /> */}
-        <Route exact path="/register" component={Register} />
-        {/* <Route exact path="/search" component={Search} /> */}
-        <Route exact path="/account" component={Account} />
-      </Wrapper>
-      <BottomNavbar />
-    </div>
-  </Router>
+  <div>
+    <TopNavbar />
+    <Header />
+    <Route exact path="/app-home" component={Home} />
+    <Wrapper>
+      {/* <Route exact path="/" component={About} /> */}
+      <Route exact path="/register" component={Register} />
+      {/* <Route exact path="/search" component={Search} /> */}
+      <Route exact path="/account" component={Account} />
+    </Wrapper>
+    <BottomNavbar />
+  </div>
 );
 
 

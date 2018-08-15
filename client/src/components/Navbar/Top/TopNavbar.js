@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import './topNavbar.css';
 
 export default class TopNavbar extends Component {
@@ -15,7 +16,7 @@ export default class TopNavbar extends Component {
               <a className="nav-link" href="/login">Login</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Medication</a>
+              <a className="nav-link" href="/medication">Medication</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Diet</a>
@@ -34,3 +35,7 @@ export default class TopNavbar extends Component {
     );
   }
 }
+//              <a className="nav-link" href="/login">Login</a>
+//              <Link className={"nav-link"} to={"/login"}>Login</Link>
+//              <Link className={"nav-link"} to={"/medication"}>Medication</Link>
+//              <a className="nav-link" href="/prescription">Add a Medication</a>
