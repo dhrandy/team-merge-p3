@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import './login.css'
 import axios from "axios"
 import classnames from "classnames"
@@ -10,8 +10,7 @@ class Login extends Component {
 	state = {
 		email: "",
 		password: "",
-		errors: {},
-		redirect: false
+		errors: {}
 	}
 
 	onChange = (e) => {
@@ -27,16 +26,12 @@ class Login extends Component {
 		axios.post("/api/users/authenticate", user)
 			.then(res => {
 				this.props.action( {email: this.state.email, token: res.data.token} )
-				this.setState({redirect: true})
+				this.props.history.push('/medication')
 			})
 			.catch(err => this.setState({errors: err.response.data}))
 	}
 
 	render() {
-		if (this.state.redirect) {
-			return(<Redirect push to='/medication' />)
-		}
-
 		const {errors} = this.state
 		return (
 			<div className="container" id="login-section">
@@ -74,4 +69,4 @@ class Login extends Component {
 
 //const Login = withRouter(LoginWithHistory)
 
-export default Login
+export default withRouter(Login)
