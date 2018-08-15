@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import PPApp from "./pages/App/App";
 import HomePage from "./pages/HomePage/HomePage"
 import LoginPage from "./pages/Login/LoginPage"
 import RegisterPage from "./pages/Register/RegisterPage"
 import AccountPage from "./pages/Account/Account"
 import FoodPage from "./pages/Food/Food"
-import MedicationPage from "./pages/Food/Food"
+import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
@@ -24,6 +24,8 @@ export default class App extends Component {
   setUserState = (clientObj) => {
     console.log(`DEBUG - App.js setUserInfo - `, clientObj)
     this.setState(clientObj)
+    //this.transitionTo('/medication')
+    console.log(this.state)
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +33,15 @@ export default class App extends Component {
   //  state of the user... this will allow us to pass the web token to all child components
   //////////////////////////////////////////////////////////////////////////////////////////////////
   loginPageWithCallback = () => {
-    return(<LoginPage action={this.setUserState} />)
+    return(<LoginPage userData={this.state} action={this.setUserState} />)
+  }
+
+  medicationPageWithUserData = () => {
+    return(<MedicationPage userData={this.state} />)
+  }
+
+  prescriptionPageWithUserData = () => {
+    return(<PrescriptionPage userData={this.state} />)
   }
 
   render() {
@@ -43,11 +53,12 @@ export default class App extends Component {
           <Route exact path="/account" component={AccountPage} />
           <Route exact path="/food" component={FoodPage} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
-          <Route exact path="/medication" component={MedicationPage} />
+          <Route exact path="/medication" component={this.medicationPageWithUserData} />
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={RegisterPage} />
-          <Route path="/prescription" component={PrescriptionPage} />
+          <Route path="/prescription" component={this.prescriptionPageWithUserData} />
           <Route component={Error} />
+          <Redirect to="/medication" />
         </Switch>
       </BrowserRouter>
     );
