@@ -5,7 +5,6 @@ import NavHome from '../../components/HomePageComponents/Nav/NavHome';
 import Article from '../../components/HomePageComponents/Article/Article';
 
 
-
 const HomePage = () => (
     
     <React.Fragment>
