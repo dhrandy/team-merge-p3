@@ -9,7 +9,7 @@ const LoginPage = props => {
     <div>
       <TopNavbar />
       <Header />
-      <Login action={props.action} />
+      <Login userState={props.userState} action={props.action} />
       <BottomNavbar />
     </div>
   )

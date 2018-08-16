@@ -1,26 +1,23 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import './register.css'
 import axios from "axios"
 import classnames from "classnames"
 
 class Register extends Component {
-	constructor() {
-		super()
-		this.state = {
-			name: "",
-			email: "",
-			password: "",
-			password2: "",
-			errors: {}
-		}
-		this.onChange = this.onChange.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
+	state = {
+	    name: "",
+	    email: "",
+	    password: "",
+	    password2: "",
+		errors: {},
+		redirect: false
 	}
-	onChange(e) {
+	onChange = (e) => {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	onSubmit(e) {
+	onSubmit = (e) => {
 		e.preventDefault()
 		const newUser = {
 			name: this.state.name,
@@ -29,11 +26,16 @@ class Register extends Component {
 			password2: this.state.password2
 		}
 		axios.post("/api/users/register", newUser)
-			.then(res => console.log(res.data))
+			.then(res => {
+				this.props.action( {email: this.state.email} )
+				this.setState({redirect: true})
+			})
 			.catch(err => this.setState({errors: err.response.data}))
 	}
 
 	render() {
+		if (this.state.redirect) return(<Redirect push to='/login' />)
+
 		const {errors} = this.state
 		return (
 			<div className="container" id="login-section">

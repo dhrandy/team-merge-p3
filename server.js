@@ -6,6 +6,7 @@ const cors = require("cors")
 const passport = require("passport")
 const mongoose = require("mongoose")
 const users = require("./server/routes/api/users");
+const prescriptions = require("./server/routes/api/prescriptions");
 
 
 console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
@@ -41,6 +42,7 @@ require("./server/config/passport")(passport)
 
 //USER ROUTES
 app.use("/api/users", users)
+app.use("/api/prescriptions", prescriptions)
 
 // INDEX ROUTE
 app.get("/", (req, res) => {
