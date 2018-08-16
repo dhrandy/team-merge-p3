@@ -1,19 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router} from "react-router-dom";
 import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 import Register from "../../components/Register/Register"
+import { PromiseProvider } from 'mongoose';
 
-const LoginPage = () => (
-    <Router>
-      <div>
-        <TopNavbar />
-        <Header />
-        <Register />
-        <BottomNavbar />
-      </div>
-    </Router>
+const LoginPage = props => (
+    <div>
+      <TopNavbar />
+      <Header />
+      <Register action={props.action}/>
+      <BottomNavbar />
+    </div>
   );
   
   

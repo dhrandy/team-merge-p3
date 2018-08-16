@@ -1,38 +1,40 @@
 import React, { Component } from 'react'
+import { Redirect, Link } from 'react-router-dom'
 import './login.css'
 import axios from "axios"
 import classnames from "classnames"
 
 
+//class LoginWithHistory extends Component {
 class Login extends Component {
-	constructor() {
-		super()
-		this.state = {
-			email: "",
-			password: "",
-			errors: {}
-		}
-		this.onChange = this.onChange.bind(this)
-		this.onSubmit = this.onSubmit.bind(this)
+	state = {
+		email: this.props.userState.userData.email,
+		password: "",
+		errors: {},
+		redirect: false
 	}
-	onChange(e) {
+
+	onChange = (e) => {
 		this.setState({[e.target.name]: e.target.value})
 	}
 
-	onSubmit(e) {
+	onSubmit = (e) => {
 		e.preventDefault()
 		const user = {
 			email: this.state.email,
 			password: this.state.password,
 		}
 		axios.post("/api/users/authenticate", user)
-			.then(res => console.log(res.data))
+			.then(res => {
+				this.props.action( {email: this.state.email, token: res.data.token} )
+				this.setState({redirect: true})
+			})
 			.catch(err => this.setState({errors: err.response.data}))
 	}
 
-	
-
 	render() {
+		if (this.state.redirect) return(<Redirect push to='/medication' />)
+
 		const {errors} = this.state
 		return (
 			<div className="container" id="login-section">
@@ -59,7 +61,7 @@ class Login extends Component {
 						</div>	
 						<br />	
 						<div>
-							<a className="nav-link" href="/register"><button type="button" className="btn btn-primary">Create New Account</button></a>	
+							<Link className="nav-link" to="/register"><button type="button" className="btn btn-primary">Create New Account</button></Link>	
 						</div>	
 					</div>
 				</form>

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
-import './prescription.css';
-import Counter from '../Counter/Counter';
+import './prescription.css'
+import Counter from '../Counter/Counter'
 
 
 class Prescription extends Component {
@@ -43,9 +42,27 @@ onChange = (e) => {
             <input class="form-check-input" type="checkbox" id="hours" value="option1" />
             <label class="form-check-label" for="checkbox1">Hours </label>
           </div>
-          <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="days" value="option2" />
-            <label class="form-check-label" for="checkbox2">Per day </label>
+
+          <div>
+            <h5> Dosage </h5>
+              <br/>
+            <h6> Amount </h6>
+            <Counter />
+              <br/>
+            <h6>Frequency </h6>
+            <Counter />
+              <br/>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="checkbox" id="hours" value="option1" />
+              <label className="form-check-label" for="checkbox1">Hours </label>
+            </div>
+            <div className="form-check form-check-inline">
+              <input className="form-check-input" type="checkbox" id="days" value="option2" />
+              <label className="form-check-label" for="checkbox2">Per day </label>
+            </div>
+              <br/>
+              <br/>
+            <button type="submit" className="btn btn-secondary">Next</button>
           </div>
             <br/>
             <br/>
@@ -54,7 +71,7 @@ onChange = (e) => {
         
       </form>
       </div>
-    )
+    );
   }
 }
 export default Prescription

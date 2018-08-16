@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import './topNavbar.css';
 
 export default class TopNavbar extends Component {
@@ -12,25 +13,25 @@ export default class TopNavbar extends Component {
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="nav-link" href="/login">Login</a>
+              <Link className="nav-link" to="/login">Login</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Medication</a>
+              <Link className="nav-link" to="/medication">Medication</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Diet</a>
+              <Link className="nav-link" to="/diet">Diet</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Health</a>
+              <Link className="nav-link" to="/health">Health</Link>
             </li> 
             {/* Karina's  */}
             <li className="nav-item">
-              <a className="nav-link" href="/prescription">Add a Medication</a>
+              <Link className="nav-link" to="/prescription">Add a Medication</Link>
             </li> 
             {/* Karina's */}
           </ul>
         </div> 
       </nav>
     );
-  };
-};
+  }
+}
