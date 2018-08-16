@@ -29,6 +29,7 @@ export default class App extends Component {
   //  requests
   //////////////////////////////////////////////////////////////////////////////////////////////////
   setUserState = (clientObj) => {
+    console.log('DEBUG - setUserState', clientObj)
     axios.get("/api/prescriptions/getUserData/"+clientObj.email)
          .then( res => {
             let userData = res.data
@@ -86,7 +87,6 @@ export default class App extends Component {
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithUserData} />
           <Route component={Error} />
-          <Redirect to="/medication" />
         </Switch>
       </BrowserRouter>
     );
