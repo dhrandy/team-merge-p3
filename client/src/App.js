@@ -9,6 +9,7 @@ import FoodPage from "./pages/Food/Food"
 import MedicationPage from "./pages/Food/Food"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
+import LiquidPage from "./pages/Liquid/LiquidPage"
 
 const App = () => (
   <Router>
@@ -22,6 +23,7 @@ const App = () => (
       <Route exact path="/medication" component={MedicationPage} />
       <Route exact path="/activity" component={ActivityPage} />
       <Route exact path="/prescription" component={PrescriptionPage} />
+      <Route exact path="/liquid" component={LiquidPage} />
   </React.Fragment>
   </Router>
 );
