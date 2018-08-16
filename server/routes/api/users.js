@@ -25,7 +25,6 @@ router.post("/register", (req, res) => {
 	    console.log('DEBUG - routes/api/users.js register', errors)
 		return res.status(400).json(errors)
 	}
-	//Check if user exists
 	User.findOne({email: req.body.email})
 		.then(user => {
 			if(user) {
@@ -82,7 +81,6 @@ router.post("/authenticate", (req, res, next) => {
 
 							//Sign Token
 							jwt.sign(payload, process.env.MONGODB_SECRET, {expiresIn: 86400}, (err, token) => {
-								console.log(token)
 								res.json({
 									success: true,
 									token: "Bearer " + token 
@@ -111,8 +109,7 @@ router.get("/current", passport.authenticate("jwt", {session:false}), (req, res,
 	res.json({
 		id: req.user.id,
 		name: req.user.name,
-		email: req.user.email,
-		perscription: req.user.perscriptions
+		email: req.user.email
 	})
 })
 
