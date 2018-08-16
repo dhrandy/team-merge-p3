@@ -4,9 +4,9 @@ const RestrictionView = (props) => {
 
   return (
       <div className="restriction-view">
-        <p>=={props.name}</p>
+        <p key={props.name.trim()}>=={props.name}</p>
         {props.restriction.map( (r) => (
-          <p key={r._id}>===={r.description}</p>
+          <p key={`r${r._id}`}>===={r.description}</p>
         ))}
       </div>
   )

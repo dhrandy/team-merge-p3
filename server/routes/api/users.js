@@ -8,11 +8,7 @@ const bcrypt = require("bcryptjs")
 const validateRegisterInput = require("../../validation/register")
 const validateLoginInput = require("../../validation/login")
 
-
-
 const User = require("../../models/user")
-const Prescription = require("../../models/prescription")
-
 
 // **** REGISTER ****
 //@route				POST api/users/register
@@ -112,23 +108,5 @@ router.get("/current", passport.authenticate("jwt", {session:false}), (req, res,
 		email: req.user.email
 	})
 })
-
-////////////////////////////////////////////////////////////////////////////
-// Please do not remove
-//
-//Test user Data pull
-// TODO double check that this is the correct location for this code
-//
-////////////////////////////////////////////////////////////////////////////
-router.get("/getUserData/:id", (req,res) => {
-	console.log( 'DEBUG - getUserData ', req.params.id );
-	let email = req.params.id;
-	User.findOne({email})
-		.populate('prescriptions')
-		.then( dbUser => {
-			console.log(dbUser)
-			res.json(dbUser)
-		})
- })
 
 module.exports = router

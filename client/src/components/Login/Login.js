@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import './login.css'
 import axios from "axios"
 import classnames from "classnames"
@@ -8,7 +8,7 @@ import classnames from "classnames"
 //class LoginWithHistory extends Component {
 class Login extends Component {
 	state = {
-		email: "",
+		email: this.props.userState.userData.email,
 		password: "",
 		errors: {},
 		redirect: false
@@ -33,9 +33,7 @@ class Login extends Component {
 	}
 
 	render() {
-		if (this.state.redirect) {
-			return(<Redirect push to='/medication' />)
-		}
+		if (this.state.redirect) return(<Redirect push to='/medication' />)
 
 		const {errors} = this.state
 		return (
@@ -63,7 +61,7 @@ class Login extends Component {
 						</div>	
 						<br />	
 						<div>
-							<a className="nav-link" href="/register"><button type="button" className="btn btn-primary">Create New Account</button></a>	
+							<Link className="nav-link" to="/register"><button type="button" className="btn btn-primary">Create New Account</button></Link>	
 						</div>	
 					</div>
 				</form>
@@ -71,7 +69,5 @@ class Login extends Component {
 		)
 	}
 }
-
-//const Login = withRouter(LoginWithHistory)
 
 export default Login
