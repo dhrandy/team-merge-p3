@@ -10,6 +10,7 @@ import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
+import News from "./pages/News/News"
 
 export default class App extends Component {
   state = {
@@ -57,6 +58,7 @@ export default class App extends Component {
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={RegisterPage} />
           <Route path="/prescription" component={this.prescriptionPageWithUserData} />
+          <Route exact path="/news" component={News} />
           <Route component={Error} />
           <Redirect to="/medication" />
         </Switch>

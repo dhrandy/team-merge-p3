@@ -13,6 +13,9 @@ export default class TopNavbar extends Component {
         <div className="collapse navbar-collapse" id="collapsibleNavbar">
           <ul className="navbar-nav">
             <li className="nav-item">
+              <a className="nav-link" href="/app-home">Home</a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/login">Login</a>
             </li>
             <li className="nav-item">
