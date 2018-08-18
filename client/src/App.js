@@ -6,10 +6,12 @@ import LoginPage from "./pages/Login/LoginPage"
 import RegisterPage from "./pages/Register/RegisterPage"
 import AccountPage from "./pages/Account/Account"
 import FoodPage from "./pages/Food/Food"
+import MedPage from "./pages/MedRestriction/Medrestriction"
 import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
+import News from "./pages/News/News"
 import axios from "axios"
 
 export default class App extends Component {
@@ -65,10 +67,10 @@ export default class App extends Component {
     return(<MedicationPage userState={this.state} />)
   }
 
-  prescriptionPageWithUserData = () => {
-    return(<PrescriptionPage userState={this.state} />)
+  prescriptionPageWithCallback = () => {
+    return(<PrescriptionPage userState={this.state} action={this.setUserState} />)
   }
-
+  
   registerPageWithCallback = () => {
     return(<RegisterPage userState={this.state} action={this.setUserEmailState} />)
   }
@@ -85,7 +87,9 @@ export default class App extends Component {
           <Route exact path="/medication" component={this.medicationPageWithUserData} />
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={this.registerPageWithCallback} />
-          <Route path="/prescription" component={this.prescriptionPageWithUserData} />
+          <Route path="/prescription" component={this.prescriptionPageWithCallback} />
+          <Route exact path="/news" component={News} />
+          <Route exact path="/medrestriction" component={MedPage} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

@@ -1,17 +1,19 @@
 import React from 'react';
-import Prescription from "../../components/Prescription/Prescription";
 import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
+import NewsContainer from "../../components/NewsContainer/NewsContainer";
 
-const PrescriptionPage = (props) => (
+const News = (props) => {
+  return(
     <div>
       <TopNavbar />
       <Header />
-      <Prescription userState={props.userState} action={props.action} />
+      <NewsContainer />
       <BottomNavbar />
     </div>
-  );
-  
-  
-  export default PrescriptionPage;
+  )
+
+}
+
+export default News;
