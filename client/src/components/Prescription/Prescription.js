@@ -35,7 +35,6 @@ onSubmit = (e) => {
   console.log(e)
 }
 
-
   render () {
     return (
       <div className="container" id="medication-page">
@@ -53,25 +52,26 @@ onSubmit = (e) => {
             <div>
               <h5> Dosage </h5>
                 <br/>
-                <input type="amount" size="3" /> ml/tablet(s)
+                <input type="name" size="3" name="dosageStrenth"/> ml/tablet(s)
               <br/>
               <br/>
             </div>
 
             <div>
-              Every <input size="4"/> Hour(s)
-                <br/>
-              <input size="4"/> Times Per Day 
-                <br/>
-                <br/>
+              <h4> How often: </h4>
+              <div>
+                {/* checkbox goes here  */}
+              </div>
+              <div>
+              <h4> Number of times per day </h4>
+              </div>
 
-              <Link to="/food" > 
+              {/* <Link to="/food" >  */}
                 <button type="submit" className="btn btn-secondary">Next</button> 
-              </Link>
+              {/* </Link> */}
 
             </div>
           </div>
-        
         </form>
       </div>
     );
