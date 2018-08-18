@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-// import { Link } from "react-router-dom";
 import './homePage.css';
 
- class HomePage extends Component {
+ export default class HomePage extends Component {
     render() {
       return (
         <div className="container">
@@ -18,5 +17,3 @@ import './homePage.css';
       );
     };
 };
-
-export default HomePage;
