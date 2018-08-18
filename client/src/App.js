@@ -66,10 +66,10 @@ export default class App extends Component {
     return(<MedicationPage userState={this.state} />)
   }
 
-  prescriptionPageWithUserData = () => {
-    return(<PrescriptionPage userState={this.state} />)
+  prescriptionPageWithCallback = () => {
+    return(<PrescriptionPage userState={this.state} action={this.setUserState} />)
   }
-
+  
   registerPageWithCallback = () => {
     return(<RegisterPage userState={this.state} action={this.setUserEmailState} />)
   }
@@ -86,7 +86,7 @@ export default class App extends Component {
           <Route exact path="/medication" component={this.medicationPageWithUserData} />
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={this.registerPageWithCallback} />
-          <Route path="/prescription" component={this.prescriptionPageWithUserData} />
+          <Route path="/prescription" component={this.prescriptionPageWithCallback} />
           <Route exact path="/news" component={News} />
           <Route component={Error} />
         </Switch>
