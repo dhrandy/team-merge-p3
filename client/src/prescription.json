@@ -1,0 +1,26 @@
+[
+    {
+        "drug1": {
+            "Medication_Conflict": "does something" ,
+            "Food_Restrictions": " does some more",
+            "Activity_Restrictions": "does a lot",
+            "Medicated": "matt"
+        }
+    },
+    {
+        "drug2": {
+            "Medication_Conflict": "does something" ,
+            "Food_Restrictions": " does some more",
+            "Activity_Restrictions": "does a lot",
+            "Medicated": "matt"
+        }
+    },
+    {
+        "drug3": {
+            "Medication_Conflict": "does something" ,
+            "Food_Restrictions": " does some more",
+            "Activity_Restrictions": "does a lot",
+            "Medicated": "matt"
+        }
+    }
+]
