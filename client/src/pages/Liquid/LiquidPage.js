@@ -1,16 +1,20 @@
 import React from 'react';
-import Activity from "../../components/Restriction/Activity/Activity";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Liquid from "../../components/Types/Liquid/Liquid";
 import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const ActivityPage = () => (
-    <div>
+const LiquidPage = () => (
+    <Router>
+      <div>
         <TopNavbar />
         <Header />
-        <Activity />
+        <Liquid />
         <BottomNavbar />
-    </div>
-);
-
-export default ActivityPage;
+      </div>
+    </Router>
+  );
+  
+  
+  export default LiquidPage;
