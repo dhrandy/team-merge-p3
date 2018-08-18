@@ -1,0 +1,30 @@
+import React from 'react';
+import axios from 'axios';
+import Account from './Account.js';
+import drugs from '../../prescription.json'
+import Wrapper from '../Wrapper/Wrapper'
+import AccountPage from '../../pages/Account/Account'
+
+export default class AccountContainer extends React.Component {
+    state = {
+        drugs
+    }
+
+    render() {
+        console.log(props)
+        return (
+            <React.Fragment>
+                {this.state.drugs.map((drug, index) =>
+                    <div key={index}>
+                        <AccountPage
+                            prescription={drug.drugs}
+                            Medication_Conflict={drug.Medication_Conflict}
+                            Food_Restrictions={drug.Food_Restrictions}
+                            Medicated={drug.Medicated}
+                        />
+                    </div>
+                )}
+            </React.Fragment>
+        )
+    }
+}
