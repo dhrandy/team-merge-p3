@@ -1,3 +1,7 @@
 #login-links {	
     text-align: center;	
 }
+
+#login-form {
+    height: 100vh;
+}

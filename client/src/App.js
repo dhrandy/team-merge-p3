@@ -6,6 +6,7 @@ import LoginPage from "./pages/Login/LoginPage"
 import RegisterPage from "./pages/Register/RegisterPage"
 import AccountPage from "./pages/Account/Account"
 import FoodPage from "./pages/Food/Food"
+import MedPage from "./pages/MedRestriction/Medrestriction"
 import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
@@ -91,6 +92,7 @@ export default class App extends Component {
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithCallback} />
           <Route exact path="/news" component={News} />
+          <Route exact path="/medrestriction" component={MedPage} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter >
