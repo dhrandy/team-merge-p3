@@ -3,7 +3,7 @@ import axios from 'axios';
 import Account from './Account.js';
 import drugs from '../../prescription.json'
 import Wrapper from '../Wrapper/Wrapper'
-import AccountPage from '../../pages/Account/Account'
+import Account from '../../components/Account/Account'
 
 export default class AccountContainer extends React.Component {
     state = {
@@ -16,7 +16,7 @@ export default class AccountContainer extends React.Component {
             <React.Fragment>
                 {this.state.drugs.map((drug, index) =>
                     <div key={index}>
-                        <AccountPage
+                        <Account
                             prescription={drug.drugs}
                             Medication_Conflict={drug.Medication_Conflict}
                             Food_Restrictions={drug.Food_Restrictions}
