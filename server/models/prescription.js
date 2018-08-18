@@ -27,19 +27,19 @@ const PrescriptionSchema = new Schema({
     },
     dosageStrength: {
         type: Number,
-        required: true
+        required: false
     },
     dosageStrengthUnits: {
         type: String,
-        required: true
+        required: false
     },
     frequency: {
         type: Number,
-        required: true
+        required: false
     },
     frequencyUnits: {
         type: String,
-        required: true
+        required: false
     },
     activityRestrictions: [childActivity],
     foodRestrictions: [childRestriction],

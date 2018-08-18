@@ -8,7 +8,7 @@ const PrescriptionPage = (props) => (
     <div>
       <TopNavbar />
       <Header />
-      <Prescription />
+      <Prescription userState={props.userState} action={props.action} />
       <BottomNavbar />
     </div>
   );
