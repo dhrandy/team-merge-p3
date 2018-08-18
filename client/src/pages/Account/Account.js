@@ -1,14 +1,14 @@
 import React from 'react';
-import Account from "../../components/Account/Account";
+import AccountContainer from "../../components/Account/AccountContainer";
 import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const AccountPage = () => (
+const AccountPage = (props) => (
     <div>
         <TopNavbar />
         <Header />
-        <Account />
+        <AccountContainer userState={props.userState} action={props.action} />
         <BottomNavbar />
     </div>
 );
