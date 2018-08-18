@@ -61,7 +61,9 @@ class Login extends Component {
 						</div>	
 						<br />	
 						<div>
-							<Link className="nav-link" to="/register"><button type="button" className="btn btn-primary">Create New Account</button></Link>	
+							<Link className="nav-link" to="/register">
+							    <button type="button" className="btn btn-primary">Create New Account</button>
+							</Link>	
 						</div>	
 					</div>
 				</form>
