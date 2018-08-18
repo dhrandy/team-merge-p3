@@ -1,0 +1,29 @@
+#title-shadow-news {
+    padding: 20px 0 20px 20px;
+    background-color: lightblue;
+    margin-bottom: 0px;
+    font-weight: bold;
+}
+
+#medical-news-border {
+    height: 5px;
+    background-color: lightgray;
+}
+
+#medical-news-title {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+#medical-news-bold {
+    font-weight: bold;
+}
+
+#medical-news-hr {
+    border: none;
+    background-color: #17a2b8;
+    width: 60px;
+    height: 4px;
+    margin-bottom: 50px;
+}

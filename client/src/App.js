@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import PPApp from "./pages/App/App";
-import HomePage from "./pages/HomePage/HomePage"
-import LoginPage from "./pages/Login/LoginPage"
-import RegisterPage from "./pages/Register/RegisterPage"
-import AccountPage from "./pages/Account/Account"
-import FoodPage from "./pages/Food/Food"
-import MedicationPage from "./pages/Medication/Medication"
-import ActivityPage from "./pages/Activity/Activity"
-import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
-import Error from "./pages/Error/Error"
-import News from "./pages/News/News"
-import axios from "axios"
+import HomePage from "./pages/HomePage/HomePage";
+import LoginPage from "./pages/Login/LoginPage";
+import RegisterPage from "./pages/Register/RegisterPage";
+import AccountPage from "./pages/Account/Account";
+import FoodPage from "./pages/Food/Food";
+import MedicationPage from "./pages/Medication/Medication";
+import ActivityPage from "./pages/Activity/Activity";
+import PrescriptionPage from "./pages/Prescription/PrescriptionPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import Error from "./pages/Error/Error";
+import News from "./pages/News/News";
+import NewsHomepage from "./pages/News/NewsHomepage";
+import axios from "axios";
 
 export default class App extends Component {
   state = {
@@ -88,6 +90,8 @@ export default class App extends Component {
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithCallback} />
           <Route exact path="/news" component={News} />
+          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route exact path="/news-homepage" component={NewsHomepage} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

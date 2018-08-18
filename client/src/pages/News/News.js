@@ -4,8 +4,7 @@ import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 import NewsContainer from "../../components/NewsContainer/NewsContainer";
 
-const News = (props) => {
-  return(
+const News = () => (
     <div>
       <TopNavbar />
       <Header />
@@ -13,7 +12,5 @@ const News = (props) => {
       <BottomNavbar />
     </div>
   )
-
-}
 
 export default News;
