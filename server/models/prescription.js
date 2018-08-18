@@ -2,6 +2,18 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema;
 
+const childDay = new Schema({
+   day: {
+       type: String
+   }
+})
+
+const childTime = new Schema({
+   time: {
+       type: String
+   }
+})
+
 const childRestriction = new Schema({
    description: {
        type: String
@@ -11,12 +23,6 @@ const childRestriction = new Schema({
 const childActivity = new Schema({
    description: {
        type: String
-   },
-   frequency: {
-       type: Number
-   },
-   frequencyUnits: {
-       type: String
    }
 })
 
@@ -25,21 +31,14 @@ const PrescriptionSchema = new Schema({
         type: String,
         required: true
     },
-    dosageStrength: {
-        type: Number,
-        required: false
-    },
-    dosageStrengthUnits: {
+    dosage: {
         type: String,
         required: false
     },
-    frequency: {
-        type: Number,
-        required: false
-    },
-    frequencyUnits: {
-        type: String,
-        required: false
+    dosageDays: [childDay],
+    dosageTime: [childTime],
+    timezone: {
+       type: String
     },
     activityRestrictions: [childActivity],
     foodRestrictions: [childRestriction],

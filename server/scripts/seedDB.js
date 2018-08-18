@@ -10,25 +10,39 @@ mongoose.connect(
 const prescriptionSeed = [
   {
     name: "Synthroid",
-    dosageStrength: 50,
-    dosageStrengthUnits: "mg",
-    frequency: 4,
-    frequencyUnits: "hours",
+    dosage: "50 mg",
+    dosageDays: [
+        {day: "Mon"},
+        {day: "Wed"},
+        {day: "Thu"}
+    ],
+    dosageTime: [
+        {time: "08:00"},
+        {time: "12:00"},
+        {time: "18:00"}
+    ],
+    timezone: "ET",
     foodRestrictions: [
         {description: "Avoid Orange Juice"},
         {description: "Take with food"}
     ],
-    medicationRestrictions: [{}],
-    activityRestrictions: [
-        {description: "Do Not drive", frequency: 1, frequencyUnits: "hour"}
-    ]
+    medicationRestrictions: [],
+    activityRestrictions: [ {description: "Do Not drive for 1 hour"} ]
   },
   {
     name: "Crestor",
-    dosageStrength: 100,
-    dosageStrengthUnits: "mg",
-    frequency: 8,
-    frequencyUnits: "hours",
+    dosage: "100 mg",
+    dosageDays: [
+        {day: "Mon"},
+        {day: "Wed"},
+        {day: "Thu"}
+    ],
+    dosageTime: [
+        {time: "08:00"},
+        {time: "12:00"},
+        {time: "18:00"}
+    ],
+    timezone: "ET",
     foodRestrictions: [
         {description: "Take with food"}
     ],
@@ -37,10 +51,18 @@ const prescriptionSeed = [
   },
   {
     name: "Ventolin",
-    dosageStrength: 50,
-    dosageStrengthUnits: "mg",
-    frequency: 3,
-    frequencyUnits: "daily",
+    dosage: "75 mg",
+    dosageDays: [
+        {day: "Mon"},
+        {day: "Wed"},
+        {day: "Thu"}
+    ],
+    dosageTime: [
+        {time: "08:00"},
+        {time: "12:00"},
+        {time: "18:00"}
+    ],
+    timezone: "ET",
     foodRestrictions: [],
     medicationRestrictions: [{description: "Do Not Take with Ibuprofen"}],
     activityRestrictions: []
