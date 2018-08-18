@@ -14,6 +14,20 @@ import Error from "./pages/Error/Error";
 import News from "./pages/News/News";
 import NewsHomepage from "./pages/News/NewsHomepage";
 import axios from "axios";
+import HomePage from "./pages/HomePage/HomePage"
+import LoginPage from "./pages/Login/LoginPage"
+import RegisterPage from "./pages/Register/RegisterPage"
+import AccountPage from "./pages/Account/Account"
+import FoodPage from "./pages/Food/Food"
+import MedPage from "./pages/MedRestriction/Medrestriction"
+import MedicationPage from "./pages/Medication/Medication"
+import ActivityPage from "./pages/Activity/Activity"
+import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
+import Error from "./pages/Error/Error"
+import News from "./pages/News/News"
+import axios from "axios"
+import Wrapper from './components/Wrapper/'
+import Account from './components/Account/Account';
 
 export default class App extends Component {
   state = {
@@ -33,13 +47,13 @@ export default class App extends Component {
   //////////////////////////////////////////////////////////////////////////////////////////////////
   setUserState = (clientObj) => {
     console.log('DEBUG - setUserState', clientObj)
-    axios.get("/api/prescriptions/getUserData/"+clientObj.email)
-         .then( res => {
-            let userData = res.data
-            this.setState({token: clientObj.token, userData})
-            console.log(this.state)
-         })
-         .catch( err => console.log(err) )
+    axios.get("/api/prescriptions/getUserData/" + clientObj.email)
+      .then(res => {
+        let userData = res.data
+        this.setState({ token: clientObj.token, userData })
+        console.log(this.state)
+      })
+      .catch(err => console.log(err))
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +67,7 @@ export default class App extends Component {
       password: "",
       prescriptions: []
     }
-    this.setState({userData})
+    this.setState({ userData })
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,28 +75,33 @@ export default class App extends Component {
   //  state of the user... this will allow us to pass the web token to all child components
   //////////////////////////////////////////////////////////////////////////////////////////////////
   loginPageWithCallback = () => {
-    return(<LoginPage userState={this.state} action={this.setUserState} />)
+    return (<LoginPage userState={this.state} action={this.setUserState} />)
   }
 
   medicationPageWithUserData = () => {
-    return(<MedicationPage userState={this.state} />)
+    return (<MedicationPage userState={this.state} />)
+  }
+
+  accountPageWithCallback = () => {
+    return (<AccountPage userState={this.state} action={this.setUserState} />)
   }
 
   prescriptionPageWithCallback = () => {
-    return(<PrescriptionPage userState={this.state} action={this.setUserState} />)
+    return (<PrescriptionPage userState={this.state} action={this.setUserState} />)
   }
-  
+
   registerPageWithCallback = () => {
-    return(<RegisterPage userState={this.state} action={this.setUserEmailState} />)
+    return (<RegisterPage userState={this.state} action={this.setUserEmailState} />)
   }
+
 
   render() {
     return (
-      <BrowserRouter>
+      < BrowserRouter >
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/app-home" component={PPApp} />
-          <Route exact path="/account" component={AccountPage} />
+          <Route exact path="/account" component={this.accountPageWithCallback} />
           <Route exact path="/food" component={FoodPage} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
           <Route exact path="/medication" component={this.medicationPageWithUserData} />
@@ -92,9 +111,13 @@ export default class App extends Component {
           <Route exact path="/news" component={News} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/news-homepage" component={NewsHomepage} />
+          <Route exact path="/medrestriction" component={MedPage} />
           <Route component={Error} />
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter >
+
+
+
     );
   }
 }

@@ -3,8 +3,6 @@ import './prescription.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-
-
 class Prescription extends Component {
 
 state = {
@@ -40,49 +38,41 @@ onSubmit = (e) => {
   render () {
     return (
       <div className="container" id="medication-page">
-      <h3> Add a Medication </h3>
-        <hr />
-      <form onSubmit= {this.onSubmit}>
-        <div className="form-group">
-          <h5> Name </h5>
-          <input type="name" id="name" aria-describedby="" placeholder="Medication Name" name="name" size="40" value={this.state.name} onChange={this.onChange} />
-        </div>
-        <div>
-          <h5> Dosage </h5>
-            <br/>
-          <h6> Amount </h6>
-            <br/>
-          <h6>Frequency </h6>
-            <br/>
-          <div className="form-check form-check-inline">
-            <input className="form-check-input" type="checkbox" id="hours" value="option1" />
-            <label className="form-check-label">Hours </label>
+        <h3> Add a Medication </h3>
+          <hr/>
+
+        <form onSubmit= {this.onSubmit}>
+
+          <div className="form-group">
+            <h5> Name </h5>
+            <input type="name" id="name" aria-describedby="" placeholder="Medication Name" name="name" size="40" value={this.state.name} onChange={this.onChange} />
           </div>
 
           <div>
-            <h5> Dosage </h5>
+            <div>
+              <h5> Dosage </h5>
+                <br/>
+                <input type="name" size="3" name="dosageStrenth"/> ml/tablet(s)
               <br/>
-            <h6> Amount </h6>
               <br/>
-            <h6>Frequency </h6>
-              <br/>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" id="hours" value="option1" />
-              <label className="form-check-label">Hours </label>
             </div>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="checkbox" id="days" value="option2" />
-              <label className="form-check-label">Per day </label>
+
+            <div>
+              <h4> How often: </h4>
+              <div>
+                {/* checkbox goes here  */}
+              </div>
+              <div>
+              <h4> Number of times per day </h4>
+              </div>
+
+              {/* <Link to="/food" >  */}
+                <button type="submit" className="btn btn-secondary">Next</button> 
+              {/* </Link> */}
+
             </div>
-              <br/>
-              <br/>
-            {/* <Link to="/food" >  */}
-              <button type="submit" className="btn btn-secondary">Next</button> 
-             {/* </Link> */}
           </div>
-        </div>
-        
-      </form>
+        </form>
       </div>
     );
   }

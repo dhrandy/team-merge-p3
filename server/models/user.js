@@ -5,6 +5,10 @@ const UserSchema = new Schema({
     name: {
         type: String,
         required: true
+    },  
+    phone: {
+        type: String,
+        required: true,
     },
     email: {
         type: String,
@@ -15,6 +19,7 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+  
     prescriptions: [{
         type: Schema.Types.ObjectId,
         ref: 'Prescription'
