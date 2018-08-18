@@ -63,7 +63,17 @@ const startTimer = () => {
     let newTime = new Date().toLocaleTimeString()
     console.log('TEXT THE CUSTOMERS!',newTime);
     timer()
-    // call the data base query to see if there is an event that needs to be triggered 
+    // call the data base query to see if there is an event that needs to be triggered
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    // axios.get('/user?ID=12345')
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+
   }, null, true, 'America/New_York');
 }
 
