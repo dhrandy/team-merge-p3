@@ -12,8 +12,8 @@ import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
 import News from "./pages/News/News"
 import axios from "axios"
-import drugs from './prescription.json'
 import Wrapper from './components/Wrapper/'
+import Account from './components/Account/Account';
 
 export default class App extends Component {
   state = {
@@ -23,8 +23,7 @@ export default class App extends Component {
       name: "",
       email: "",
       password: "",
-      prescriptions: [],
-      drugs
+      prescriptions: []
     }
   }
 
@@ -77,29 +76,14 @@ export default class App extends Component {
     return (<RegisterPage userState={this.state} action={this.setUserEmailState} />)
   }
 
-  account = () => {
-    return (<Wrapper>
-
-      {this.state.drugs.map(drug => (
-        <AccountPage
-          prescription={drug.prescription}
-          Medication_Conflict={drug.Medication_Conflict}
-          Food_Restrictions={drug.Food_Restrictions}
-          Medicated={drug.Medicated}
-        />
-      ))}
-    </Wrapper>)
-
-  }
 
   render() {
-    console.log(this.state.drugs)
     return (
-      <BrowserRouter>
+      < BrowserRouter >
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/app-home" component={PPApp} />
-          <Route exact path="/account" component={this.account} />
+          <Route exact path="/account" component={AccountPage} />
           <Route exact path="/food" component={FoodPage} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
           <Route exact path="/medication" component={this.medicationPageWithUserData} />
@@ -109,7 +93,10 @@ export default class App extends Component {
           <Route exact path="/news" component={News} />
           <Route component={Error} />
         </Switch>
-      </BrowserRouter>
+      </BrowserRouter >
+
+
+
     );
   }
 }
