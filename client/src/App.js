@@ -10,6 +10,7 @@ import MedicationPage from "./pages/Medication/Medication"
 import ActivityPage from "./pages/Activity/Activity"
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
 import Error from "./pages/Error/Error"
+import News from "./pages/News/News"
 import axios from "axios"
 
 export default class App extends Component {
@@ -86,6 +87,7 @@ export default class App extends Component {
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithUserData} />
+          <Route exact path="/news" component={News} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>
