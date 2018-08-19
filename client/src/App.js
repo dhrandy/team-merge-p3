@@ -14,18 +14,7 @@ import Error from "./pages/Error/Error";
 import News from "./pages/News/News";
 import NewsHomepage from "./pages/News/NewsHomepage";
 import axios from "axios";
-import HomePage from "./pages/HomePage/HomePage"
-import LoginPage from "./pages/Login/LoginPage"
-import RegisterPage from "./pages/Register/RegisterPage"
-import AccountPage from "./pages/Account/Account"
-import FoodPage from "./pages/Food/Food"
 import MedPage from "./pages/MedRestriction/Medrestriction"
-import MedicationPage from "./pages/Medication/Medication"
-import ActivityPage from "./pages/Activity/Activity"
-import PrescriptionPage from "./pages/Prescription/PrescriptionPage"
-import Error from "./pages/Error/Error"
-import News from "./pages/News/News"
-import axios from "axios"
 import Wrapper from './components/Wrapper/'
 import Account from './components/Account/Account';
 
