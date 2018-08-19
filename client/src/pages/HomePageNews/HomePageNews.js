@@ -1,9 +1,9 @@
 import React from 'react';
 import NewsContainer from '../../components/NewsContainer/NewsContainer';
 import NavHome from '../../components/HomePageComponents/Nav/NavHome';
-import './newsHomepage.css'
+import './HomePageNews.css'
 
-const NewsHomepage = () => (
+const HomePageNews = () => (
     <React.Fragment>
         <NavHome />
         <div id="header-below-nav-separator"></div>
@@ -22,4 +22,4 @@ const NewsHomepage = () => (
     </React.Fragment>
   )
 
-export default NewsHomepage;
+export default HomePageNews;
