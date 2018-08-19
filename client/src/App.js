@@ -12,7 +12,7 @@ import PrescriptionPage from "./pages/Prescription/PrescriptionPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import Error from "./pages/Error/Error";
 import News from "./pages/News/News";
-import NewsHomepage from "./pages/News/NewsHomepage";
+import HomePageNews from "./pages/HomePageNews/HomePageNews";
 import axios from "axios";
 import MedPage from "./pages/MedRestriction/Medrestriction"
 import Wrapper from './components/Wrapper/'
@@ -99,7 +99,7 @@ export default class App extends Component {
           <Route path="/prescription" component={this.prescriptionPageWithCallback} />
           <Route exact path="/news" component={News} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-          <Route exact path="/news-homepage" component={NewsHomepage} />
+          <Route exact path="/news-homepage" component={HomePageNews} />
           <Route exact path="/medrestriction" component={MedPage} />
           <Route component={Error} />
         </Switch>
