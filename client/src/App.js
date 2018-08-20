@@ -26,6 +26,7 @@ export default class App extends Component {
       name: "",
       email: "",
       password: "",
+      phone: "",
       prescriptions: []
     }
   }
@@ -54,6 +55,7 @@ export default class App extends Component {
       name: "",
       email: clientObj.email,
       password: "",
+      phone: "",
       prescriptions: []
     }
     this.setState({ userData })
@@ -72,7 +74,7 @@ export default class App extends Component {
   }
 
   accountPageWithCallback = () => {
-    return (<AccountPage userState={this.state} action={this.setUserState} />)
+    return (<AccountPage userData={this.state.userData} action={this.setUserState} />)
   }
 
   prescriptionPageWithCallback = () => {
