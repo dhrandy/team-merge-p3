@@ -33,7 +33,7 @@ class Login extends Component {
 	}
 
 	render() {
-		if (this.state.redirect) return(<Redirect push to='/medication' />)
+		if (this.state.redirect) return(<Redirect push to='/account' />)
 
 		const {errors} = this.state
 		return (

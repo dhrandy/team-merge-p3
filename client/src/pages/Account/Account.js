@@ -8,9 +8,10 @@ const AccountPage = (props) => (
     <div>
         <TopNavbar />
         <Header />
-        <AccountContainer userState={props.userState} action={props.action} />
+        <AccountContainer {...props} />
         <BottomNavbar />
     </div>
 );
 
 export default AccountPage;
+//        <AccountContainer userData={props.userData} action={props.action} />
