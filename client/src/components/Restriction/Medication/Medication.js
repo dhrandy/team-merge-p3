@@ -32,11 +32,11 @@ class Medication extends Component {
         <h1> Medication Restriction </h1>
         <h4> Please enter any medication restriction associated with the medication</h4>
           <br/>
-        <input type="text" className="medication" aria-describedby="" placeholder="Medication Restriction" name="name" />
+        <input type="text" aria-describedby="" placeholder="Medication Restriction" value={this.state.value} onChange={this.onChange} />
           <br/> <br/>
-        <input type="text" className="medication" aria-describedby="" placeholder="Medication Restriction" name="name" />
+        <input type="text" aria-describedby="" placeholder="Medication Restriction" value={this.state.value} onChange={this.onChange} />
           <br/> <br/>
-        <input type="text" className="medication" aria-describedby="" placeholder="Medication Restriction" name="name" />
+        <input type="text" aria-describedby="" placeholder="Medication Restriction" value={this.state.value} onChange={this.onChange} />
           <br/> <br/>
         <Link to="/account" >
         <button onSubmit={this.onSubmit} type="submit" className="btn btn-secondary">Submit</button> 

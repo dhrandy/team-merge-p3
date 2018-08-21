@@ -32,7 +32,7 @@ class Activity extends Component {
       <div id="activitypage">
         <h4> Activity Restriction </h4>
         <h6> Please enter any activity restriction associated with the medication</h6>
-        <input type="text" id="activity" aria-describedby="" placeholder="Activity Restriction" name="name" />
+        <input type="text" aria-describedby="" placeholder="Activity Restriction" value={this.state.value} onChange={this.onChange} />
           <br/><br/>
         <Link to="/medrestriction" >
         <button type="submit" className="btn btn-secondary">Next</button> 

@@ -2,23 +2,21 @@ import React, {Component} from 'react';
 import './prescription.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { CheckBox } from 'react-native-elements';
 
 class Prescription extends Component {
-constructor() {
-  super();
-  this.state={
-    check: false
-  }
-}
+constructor(props) {
+  super(props);
+  this.state = {value: "eastern"};
 
-checkboxTest() 
-{
-  this.setState({
-    check:!this.state.check
-  })
+  this.handleChange = this.handleChange.bind(this);
+  this.handleSubmit = this.handleSubmit.bind(this);
 }
-
+handleChange(e) {
+  this.setState({value: e.target.value});
+}
+handleSubmit(e) {
+  e.preventDefault();
+}
 
 state = {
   name: "",
@@ -75,11 +73,31 @@ onSubmit = (e) => {
             <div>
               <h4> How often: </h4>
               <div>
-                <CheckBox title="Monday" value={this.state.check} onChange={()=>this.checkboxTest()} />
+                {/* checkboxes go heere */}
               </div>
               <div>
               <h4> Number of times per day </h4>
+              Mon <input type="checkbox" />
+              Tue <input type="checkbox" />
+              Wed <input type="checkbox" />
+              Thur <input type="checkbox" />
+              Fri <input type="checkbox" />
+              Sat <input type="checkbox" />
+              Sun <input type="checkbox" />
+              
+              <label>
+                Select your time zone:
+                <select vlaue={this.state.value} onChange={this.handleChange}>
+                  <option value="eastern"> Eastern </option>
+                  <option value="pacific" >Pacific</option>
+                  <option value="central" >Central</option>
+                  <option value="mountain" >Mountain</option>
+
+                </select>
+              </label>
+          
               </div>
+              
 
               {/* <Link to="/food" >  */}
                 <button type="submit" className="btn btn-secondary">Next</button> 
