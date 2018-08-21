@@ -2,8 +2,23 @@ import React, {Component} from 'react';
 import './prescription.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { CheckBox } from 'react-native-elements';
 
 class Prescription extends Component {
+constructor() {
+  super();
+  this.state={
+    check: false
+  }
+}
+
+checkboxTest() 
+{
+  this.setState({
+    check:!this.state.check
+  })
+}
+
 
 state = {
   name: "",
@@ -60,7 +75,7 @@ onSubmit = (e) => {
             <div>
               <h4> How often: </h4>
               <div>
-                {/* checkbox goes here  */}
+                <CheckBox title="Monday" value={this.state.check} onChange={()=>this.checkboxTest()} />
               </div>
               <div>
               <h4> Number of times per day </h4>
