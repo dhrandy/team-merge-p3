@@ -8,6 +8,8 @@ const mongoose = require("mongoose")
 const users = require("./server/routes/api/users")
 const prescriptions = require("./server/routes/api/prescriptions")
 
+const Cust = require("./server/models/user")
+
 
 console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
 //CONNECT TO Mongo
@@ -65,13 +67,13 @@ const startTimer = () => {
     timer()
     // call the data base query to see if there is an event that needs to be triggered
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // axios.get('/user?ID=12345')
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+    axios.get('/user?ID=12345')
+      .then(function (response) {
+        console.log(response);
+      })
+    .catch(function (error) {
+      console.log(error);
+    });
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
   }, null, true, 'America/New_York');
@@ -79,17 +81,28 @@ const startTimer = () => {
 
 // ***** CRONGJOBjs END *****
 ///////////////////////////////////////////////////////////
+const findAll = () => {
+  Cust.find({})
+  .populate("perscriptions")
+  .then(users => {
+    console.log(users)
+  })
+}
+
 ///////////////////////////////////////////////////////////
 // ***** MOMENTjs START *****
 const moment = require('moment')
 
 
 const timer = () => {
-  let test = "12:00"
   let now = moment(new Date()).format("HH:mm")
-  console.log(now)
+  User.find({})
+  .populate("perscriptions")
+  .then(users => {
+    console.log(users)
+  })
   if(test === now) {
-    sendTestMessage()
+    sendTestMessage(now, Prescription.name, )
   }
 }
   
@@ -104,10 +117,10 @@ var authToken = process.env.TWILIO_TOKEN    // Your Auth Token from www.twilio.c
 
 var client = new twilio(accountSid, authToken)
 
-const sendTestMessage = () => {
+const sendTestMessage = (now, medication, custPhone) => {
   client.messages.create({
-      body: 'Hello from Node',
-      to: '+18454221708',  // Text this number
+      body: 'Hello it is' + now + "it is time to take" + medication,
+      to: custPhone,  // Text this number
       from: '+19287234758' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid))
@@ -118,6 +131,7 @@ const sendTestMessage = () => {
 // ***** TWILLIO END  ****
 //Server is listening
 app.listen(PORT, () => {
-  startTimer()
+  findAll()
+  // startTimer()
   console.log(`Server listening on port ${PORT}!`);
 });
