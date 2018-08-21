@@ -7,7 +7,7 @@ const NewsCard = (props) => {
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-4">
-                        <img className="news-image" src={props.img}></img>
+                        <img className="news-image" src={props.img} alt="news-img"></img>
                     </div>
                     <div className="col-sm-8">
                         <p className="article-title">{props.title}</p>
