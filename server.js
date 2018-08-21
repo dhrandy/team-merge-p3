@@ -28,6 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({encoded: false}))
 
 app.use(bodyParser.json())
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 
 //PASSPORT
