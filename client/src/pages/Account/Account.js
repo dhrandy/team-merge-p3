@@ -14,4 +14,3 @@ const AccountPage = (props) => (
 );
 
 export default AccountPage;
-//        <AccountContainer userData={props.userData} action={props.action} />
