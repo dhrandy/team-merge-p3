@@ -2,7 +2,6 @@ require('dotenv').config()
 const express = require("express")
 const path = require("path")
 const bodyParser = require("body-parser")
-const cors = require("cors")
 const passport = require("passport")
 const mongoose = require("mongoose")
 const users = require("./server/routes/api/users")
@@ -20,8 +19,6 @@ mongoose
 const app = express();
 
 const PORT = process.env.PORT || 5000
-//BRING IN CORS
-app.use(cors())
 
 //SET STATIC FOLDER 
 app.use(express.static(path.join(__dirname, 'public')))
