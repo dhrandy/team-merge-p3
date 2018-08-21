@@ -8,7 +8,7 @@ const childDosage = new Schema({
         required: false,
         unique: false
     },
-    strength: {
+    route: {
         type: String,
         required: false,
         unique: false
