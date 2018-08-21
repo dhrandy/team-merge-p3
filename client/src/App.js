@@ -15,8 +15,6 @@ import News from "./pages/News/News";
 import HomePageNews from "./pages/HomePageNews/HomePageNews";
 import axios from "axios";
 import MedPage from "./pages/MedRestriction/Medrestriction"
-import Wrapper from './components/Wrapper/'
-import Account from './components/Account/Account';
 
 export default class App extends Component {
   state = {
@@ -74,8 +72,13 @@ export default class App extends Component {
   }
 
   accountPageWithCallback = () => {
-    return (<AccountPage userData={this.state.userData} action={this.setUserState} />)
+    return (<AccountPage allMedications={true} userData={this.state.userData} action={this.setUserState} />)
   }
+
+  nextMedicationEvent = () => {
+    return (<AccountPage allMedications={false} userData={this.state.userData} action={this.setUserState} />)
+  }
+
 
   prescriptionPageWithCallback = () => {
     return (<PrescriptionPage userState={this.state} action={this.setUserState} />)
@@ -95,7 +98,7 @@ export default class App extends Component {
           <Route exact path="/account" component={this.accountPageWithCallback} />
           <Route exact path="/food" component={FoodPage} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
-          <Route exact path="/medication" component={this.medicationPageWithUserData} />
+          <Route exact path="/medication" component={this.nextMedicationEvent} />
           <Route exact path="/activity" component={ActivityPage} />
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithCallback} />
