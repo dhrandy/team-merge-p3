@@ -106,9 +106,8 @@ class AccountContainer extends Component {
                             </thead>
                             <tbody>
                                 {userData.prescriptions.map((drug, index) => {
-                                    let returnStr = ""
                                     if (allMedications || this.medTime(drug)) {
-                                        returnStr = (<Account  key={index}
+                                        return (<Account  key={index}
                                             prescription={drug.name}
                                             medicationConflict={drug.medicationRestrictions.length}
                                             foodRestrictions={drug.foodRestrictions.length}
@@ -116,7 +115,7 @@ class AccountContainer extends Component {
                                             Medicated={userData.name}
                                         />)
                                     }
-                                    return returnStr
+                                    else return (<tr key={index}/>)
                                 })}
                             </tbody>
                         </table>
