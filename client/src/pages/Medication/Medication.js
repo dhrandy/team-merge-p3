@@ -8,7 +8,7 @@ const MedicationPage = (props) => {
   const userData = props.userState.userData
   return(
     <div>
-      <TopNavbar />
+      <TopNavbar userName={props.userState.userData.name}/>
       <Header />
       <p>User = {userData.name} </p>
       <p>Medication email = {userData.email} </p>

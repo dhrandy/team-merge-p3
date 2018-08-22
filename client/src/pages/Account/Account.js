@@ -6,7 +6,7 @@ import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
 const AccountPage = (props) => (
     <div>
-        <TopNavbar />
+        <TopNavbar userName={props.userData.name}/>
         <Header />
         <AccountContainer {...props} />
         <BottomNavbar />

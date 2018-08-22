@@ -5,6 +5,13 @@ a.nav.navbar-nav.navbar-logo.mx-auto {
     text-align: center;
 }
 
+a.nav.navbar-nav.navbar-logo.login {
+    color: white;
+    font-size: 15px;
+    text-align: right;
+    margin-right: 30px;
+}
+
 .navbar-logo {
     font-weight: bold;
 }

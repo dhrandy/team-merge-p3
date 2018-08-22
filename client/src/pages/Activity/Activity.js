@@ -4,9 +4,9 @@ import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const ActivityPage = () => (
+const ActivityPage = props => (
     <div>
-        <TopNavbar />
+        <TopNavbar userName={props.userState.userData.name}/>
         <Header />
         <Activity />
         <BottomNavbar />

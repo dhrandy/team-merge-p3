@@ -7,7 +7,7 @@ import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 const LoginPage = props => {
   return(
     <div>
-      <TopNavbar />
+      <TopNavbar userName={props.userState.userData.name}/>
       <Header />
       <Login userState={props.userState} action={props.action} />
       <BottomNavbar />
