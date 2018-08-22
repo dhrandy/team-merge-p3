@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './nav.css'
 
 export default class NavHome extends Component {
@@ -9,16 +10,16 @@ export default class NavHome extends Component {
                   <span className="navbar-toggler-icon"></span>
                 </button>
               
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+                <div className="animated fadeInUp collapse navbar-collapse" id="navbarTogglerDemo03">
                   <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li className="nav-item">
-                        <a className="nav-link" href="/">Home</a>
+                        <Link to="/" className="nav-link">Home</Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="/app-home">App</a>
+                      <Link to="/app-home" className="nav-link">App</Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/news-homepage">Medical News</a>
+                        <Link to="/news-homepage" className="nav-link">Medical News</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="mailto:prescriptionplanner@prescriptionplanner.com">
