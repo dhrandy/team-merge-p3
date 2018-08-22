@@ -93,6 +93,22 @@ export default class App extends Component {
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
+  // 
+  //////////////////////////////////////////////////////////////////////////////////////////////////
+  removePrescription = (id) => {
+    let pid = {_id: id}
+    axios.delete("/api/prescriptions/removePrescriptionFromUser/" + this.state.userData.email, {data: pid} )
+      .then(res => {
+          let clientObj = {
+            token: this.state.token,
+            email: this.state.userData.email
+          }
+          this.setUserState(clientObj)
+      })
+      .catch(err => console.log(err))
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////////////////////
   //  Construct LoginPage component and pass the reference back to the function that will set the 
   //  state of the user... this will allow us to pass the web token to all child components
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -126,7 +142,7 @@ export default class App extends Component {
   }
 
   accountPageWithCallback = () => {
-    return (<AccountPage allMedications={true} userData={this.state.userData} action={this.setUserState} />)
+    return (<AccountPage allMedications={true} userData={this.state.userData} removePrescription={this.removePrescription} />)
   }
 
   nextMedicationEvent = () => {

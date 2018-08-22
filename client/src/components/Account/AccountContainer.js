@@ -112,7 +112,8 @@ class AccountContainer extends Component {
                                             medicationConflict={drug.medicationRestrictions.length}
                                             foodRestrictions={drug.foodRestrictions.length}
                                             activityRestrictions={drug.activityRestrictions.length}
-                                            Medicated={userData.name}
+                                            id={drug._id}
+                                            removePrescription={this.props.removePrescription}
                                         />)
                                     }
                                     else return (<tr key={index}/>)
