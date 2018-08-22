@@ -13,7 +13,10 @@ class AccountContainer extends Component {
     componentDidMount = () => {
         if(!this.props.allMedications) {
             this.intervalID = setInterval( () => this.checkForNextTime(), 60000) 
-            if(!this.state.checking) this.checkForNextTime()
+            //
+            // Had to add this delay after adding sessionStorage
+            //
+            if(!this.state.checking) setTimeout( () => {this.checkForNextTime()}, 1000);
         } 
     }
 
@@ -38,6 +41,7 @@ class AccountContainer extends Component {
         let foundOne = false
         let cTime = moment();
         let nextMedTime = moment(cTime).add(8,'day');
+        console.log('DEBUG - before map()', this.props.userData.prescriptions)
         this.props.userData.prescriptions.map( (drug) => {
             drug.dosageDays.map( (d) => {
                 let dDay = moment().isoWeekday(d.day).startOf('day')
@@ -48,6 +52,7 @@ class AccountContainer extends Component {
                   let validTime = moment(nextMedTime)
                   pTime.add(minutes,'minutes')
                   if ( pTime >= cTime ) validTime = moment(pTime)
+                  console.log('DEBUG - validTime, nextMedTime', validTime, nextMedTime)
                   if ( validTime <= nextMedTime ) {
                       foundOne = true
                       nextMedTime = moment(validTime)
