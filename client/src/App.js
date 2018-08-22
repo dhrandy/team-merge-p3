@@ -93,8 +93,24 @@ export default class App extends Component {
     return (<LoginPage userState={this.state} action={this.setUserState} />)
   }
 
+  activityPagePageWithUserData = () => {
+    return (<ActivityPage userState={this.state} />)
+  }
+
+  foodPagePageWithUserData = () => {
+    return (<FoodPage userState={this.state} />)
+  }
+
   medicationPageWithUserData = () => {
     return (<MedicationPage userState={this.state} />)
+  }
+
+  medPageWithUserData = () => {
+    return (<MedPage userState={this.state} />)
+  }
+
+  newsPageWithUserData = () => {
+    return (<News userState={this.state} />)
   }
 
   accountPageWithCallback = () => {
@@ -122,16 +138,16 @@ export default class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/app-home" component={PPApp} />
           <Route exact path="/account" component={this.accountPageWithCallback} />
-          <Route exact path="/food" component={FoodPage} />
+          <Route exact path="/food" component={this.foodPagePageWithUserData} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
           <Route exact path="/medication" component={this.nextMedicationEvent} />
-          <Route exact path="/activity" component={ActivityPage} />
+          <Route exact path="/activity" component={this.activityPagePageWithUserData} />
           <Route exact path="/register" component={this.registerPageWithCallback} />
           <Route path="/prescription" component={this.prescriptionPageWithCallback} />
-          <Route exact path="/news" component={News} />
+          <Route exact path="/news" component={this.newsPageWithUserData} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/news-homepage" component={HomePageNews} />
-          <Route exact path="/medrestriction" component={MedPage} />
+          <Route exact path="/medrestriction" component={this.medPageWithUserData} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter >

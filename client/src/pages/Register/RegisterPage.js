@@ -6,7 +6,7 @@ import Register from "../../components/Register/Register"
 
 const LoginPage = props => (
     <div>
-      <TopNavbar />
+      <TopNavbar userName={props.userState.userData.name}/>
       <Header />
       <Register action={props.action}/>
       <BottomNavbar />

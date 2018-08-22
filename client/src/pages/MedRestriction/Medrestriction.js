@@ -4,9 +4,9 @@ import Header from "../../components/Header/Header";
 import BottomNavbar from "../../components/Navbar/Bottom/BottomNavbar";
 import TopNavbar from "../../components/Navbar/Top/TopNavbar";
 
-const MedPage = () => (
+const MedPage = props => (
     <div>
-        <TopNavbar />
+        <TopNavbar userName={props.userState.userData.name}/>
         <Header />
         <Medication />
         <BottomNavbar />
