@@ -29,6 +29,23 @@ export default class App extends Component {
     }
   }
 
+  componentDidMount = () => {
+    if(this.state.token == "") {
+      const email = sessionStorage.getItem('p3State-email');
+      const token = sessionStorage.getItem('p3State-token');
+      console.log('DEBUG - sessionStorage - before read', email, token)
+      if ( token ) {
+        axios.get("/api/prescriptions/getUserData/" + email)
+          .then(res => {
+            let userData = res.data
+            console.log('DEBUG - sessionStorage - after read', userData)
+            this.setState({ token, userData })
+          })
+          .catch(err => console.log(err))
+      }
+    }
+  }
+
   //////////////////////////////////////////////////////////////////////////////////////////////////
   //  record the client login data so that the application knows which specific user is sending 
   //  requests
@@ -39,9 +56,18 @@ export default class App extends Component {
       .then(res => {
         let userData = res.data
         this.setState({ token: clientObj.token, userData })
+        sessionStorage.setItem('p3State-email', clientObj.email)
+        sessionStorage.setItem('p3State-token', clientObj.token)
         console.log(this.state)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        if (err.code == 500) {
+          console.log('New Session')
+        }
+        else {
+          console.log(err)
+        }
+      })
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
