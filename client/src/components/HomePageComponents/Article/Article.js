@@ -8,7 +8,7 @@ export default class Article extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-4 left-article">
-                <div className="left-article-text">
+                <div className="left-article-text animated">
                   <h3>Reminders</h3>
                   <p>The prescription planner app allows you to add medication reminders to your calendar.</p>
                   <ul>

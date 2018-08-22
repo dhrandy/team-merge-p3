@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './header.css'
 
 export default class HeaderHome extends Component {
@@ -6,7 +7,7 @@ export default class HeaderHome extends Component {
     return (
       <header>
       <div className="jumbotron jumbotron-fluid jumbotron-home">
-      <div className="container">
+      <div className="container animated fadeInUp">
       <h1 id="title-shadow">P<span className="title-smaller">RESCRIPTION</span> <br />P<span className="title-smaller">LANNER</span></h1>
       <hr id="title-hr" align="left" />
       <h5>
@@ -19,7 +20,7 @@ export default class HeaderHome extends Component {
         </ul>
       </h5>
       <p>
-        <a href="/login"><button type="button" className="btn btn-info">APP LOGIN</button></a>
+      <Link to="/login"><button type="button" className="btn btn-info">APP LOGIN</button></Link>
       </p>
       </div>
       </div>
