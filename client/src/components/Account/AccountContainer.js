@@ -30,7 +30,9 @@ class AccountContainer extends Component {
             drug.dosageTime.map( (t) => {
                 let checkTime = `${d.day} ${t.time}`
                 if ( checkTime === this.state.nextTime ) matchesNextMedTime = true
+                return matchesNextMedTime
             })
+            return matchesNextMedTime
         })
 
         return matchesNextMedTime
@@ -55,8 +57,11 @@ class AccountContainer extends Component {
                       foundOne = true
                       nextMedTime = moment(validTime)
                   }
+                  return foundOne
                 })
+                return foundOne
             })
+            return foundOne
         })
         if ( foundOne ) {
             this.setState({
@@ -101,8 +106,9 @@ class AccountContainer extends Component {
                             </thead>
                             <tbody>
                                 {userData.prescriptions.map((drug, index) => {
+                                    let returnStr = ""
                                     if (allMedications || this.medTime(drug)) {
-                                        return (<Account  key={index}
+                                        returnStr = (<Account  key={index}
                                             prescription={drug.name}
                                             medicationConflict={drug.medicationRestrictions.length}
                                             foodRestrictions={drug.foodRestrictions.length}
@@ -110,6 +116,7 @@ class AccountContainer extends Component {
                                             Medicated={userData.name}
                                         />)
                                     }
+                                    return returnStr
                                 })}
                             </tbody>
                         </table>

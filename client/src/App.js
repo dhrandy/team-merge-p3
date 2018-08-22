@@ -31,15 +31,13 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    if(this.state.token == "") {
+    if(this.state.token === "") {
       const email = sessionStorage.getItem('p3State-email');
       const token = sessionStorage.getItem('p3State-token');
-      console.log('DEBUG - sessionStorage - before read', email, token)
       if ( token ) {
         axios.get("/api/prescriptions/getUserData/" + email)
           .then(res => {
             let userData = res.data
-            console.log('DEBUG - sessionStorage - after read', userData)
             this.setState({ token, userData })
           })
           .catch(err => console.log(err))
@@ -52,8 +50,7 @@ export default class App extends Component {
   //  requests
   //////////////////////////////////////////////////////////////////////////////////////////////////
   setUserState = (clientObj) => {
-    console.log('DEBUG - setUserState', clientObj)
-    if (clientObj.token == "") {
+    if (clientObj.token === "") {
       //
       //  set state to an init state... reusing the method below
       //
@@ -66,10 +63,9 @@ export default class App extends Component {
           this.setState({ token: clientObj.token, userData })
           sessionStorage.setItem('p3State-email', clientObj.email)
           sessionStorage.setItem('p3State-token', clientObj.token)
-          console.log(this.state)
         })
         .catch(err => {
-          if (err.code == 500) {
+          if (err.code === 500) {
             console.log('New Session')
           }
           else {
