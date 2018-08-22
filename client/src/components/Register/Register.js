@@ -27,7 +27,7 @@ class Register extends Component {
 			password: this.state.password,
 			password2: this.state.password2
 		}
-		axios.post("/api/users/register", newUser)
+		axios.post("/api/users/register",  newUser)
 			.then(res => {
 				this.props.action( {email: this.state.email} )
 				this.setState({redirect: true})
