@@ -8,7 +8,6 @@ const users = require("./server/routes/api/users")
 const prescriptions = require("./server/routes/api/prescriptions")
 
 
-console.log(`DEBUG - server.js - ${process.env.MONGODB_URI} `)
 //CONNECT TO Mongo
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")

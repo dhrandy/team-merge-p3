@@ -123,9 +123,9 @@ onSubmit = (e) => {
               </div>
               
 
-              {/* <Link to="/food" >  */}
+              <Link to="/food" >
                 <button type="submit" className="btn btn-secondary">Next</button> 
-              {/* </Link> */}
+              </Link>
 
             </div>
           </div>
