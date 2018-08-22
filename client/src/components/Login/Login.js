@@ -33,7 +33,7 @@ class Login extends Component {
 	}
 
 	render() {
-		if (this.state.redirect) return(<Redirect push to='/account' />)
+		if (this.state.redirect) return(<Redirect push to='/medication' />)
 
 		const {errors} = this.state
 		return (
@@ -52,9 +52,6 @@ class Login extends Component {
 						{errors.password && (<div className="invalid-feedback">{errors.password}</div>)}
 					</div>
 					<div id="login-links">
-						<div>	
-							<a href="#">Forgot Password?</a>	
-						</div>	
 						<br />	
 						<div>	
 							<button type="submit" className="btn btn-primary" id="sign-in" >Sign In</button>	
