@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PPApp from "./pages/App/App";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/Login/LoginPage";
+import LogoutPage from "./pages/Logout/LogoutPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import AccountPage from "./pages/Account/Account";
 import FoodPage from "./pages/Food/Food";
@@ -52,22 +53,30 @@ export default class App extends Component {
   //////////////////////////////////////////////////////////////////////////////////////////////////
   setUserState = (clientObj) => {
     console.log('DEBUG - setUserState', clientObj)
-    axios.get("/api/prescriptions/getUserData/" + clientObj.email)
-      .then(res => {
-        let userData = res.data
-        this.setState({ token: clientObj.token, userData })
-        sessionStorage.setItem('p3State-email', clientObj.email)
-        sessionStorage.setItem('p3State-token', clientObj.token)
-        console.log(this.state)
-      })
-      .catch(err => {
-        if (err.code == 500) {
-          console.log('New Session')
-        }
-        else {
-          console.log(err)
-        }
-      })
+    if (clientObj.token == "") {
+      //
+      //  set state to an init state... reusing the method below
+      //
+      this.setUserEmailState({email: clientObj.email})
+    }
+    else {
+      axios.get("/api/prescriptions/getUserData/" + clientObj.email)
+        .then(res => {
+          let userData = res.data
+          this.setState({ token: clientObj.token, userData })
+          sessionStorage.setItem('p3State-email', clientObj.email)
+          sessionStorage.setItem('p3State-token', clientObj.token)
+          console.log(this.state)
+        })
+        .catch(err => {
+          if (err.code == 500) {
+            console.log('New Session')
+          }
+          else {
+            console.log(err)
+          }
+        })
+    }
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,6 +92,8 @@ export default class App extends Component {
       prescriptions: []
     }
     this.setState({ userData })
+    sessionStorage.setItem('p3State-email', userData.email)
+    sessionStorage.setItem('p3State-token', "")
   }
 
   //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -92,6 +103,11 @@ export default class App extends Component {
   loginPageWithCallback = () => {
     return (<LoginPage userState={this.state} action={this.setUserState} />)
   }
+
+  logoutPageWithCallback = () => {
+    return (<LogoutPage userState={this.state} action={this.setUserState} />)
+  }
+
 
   activityPagePageWithUserData = () => {
     return (<ActivityPage userState={this.state} />)
@@ -140,6 +156,7 @@ export default class App extends Component {
           <Route exact path="/account" component={this.accountPageWithCallback} />
           <Route exact path="/food" component={this.foodPagePageWithUserData} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
+          <Route exact path="/logout" component={this.logoutPageWithCallback} />
           <Route exact path="/medication" component={this.nextMedicationEvent} />
           <Route exact path="/activity" component={this.activityPagePageWithUserData} />
           <Route exact path="/register" component={this.registerPageWithCallback} />

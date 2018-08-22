@@ -36,6 +36,9 @@ export default class TopNavbar extends Component {
               <Link className="nav-link" to="/prescription">Add a Medication</Link>
             </li> 
             {/* Karina's */}
+            <li className="nav-item">
+              <Link className="nav-link" to="/logout">Logout</Link>
+            </li> 
           </ul>
         </div> 
       </nav>
