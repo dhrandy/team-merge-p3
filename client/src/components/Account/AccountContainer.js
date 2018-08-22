@@ -101,7 +101,7 @@ class AccountContainer extends Component {
                                     <th scope="col">Medication Conflict</th>
                                     <th scope="col">Food Restrictions</th>
                                     <th scope="col">Activity Restrictions</th>
-                                    <th scope="col">Medicated </th>
+                                    <th scope="col">Remove </th>
                                 </tr>
                             </thead>
                             <tbody>
