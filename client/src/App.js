@@ -6,7 +6,6 @@ import LoginPage from "./pages/Login/LoginPage";
 import LogoutPage from "./pages/Logout/LogoutPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import AccountPage from "./pages/Account/Account";
-import FoodPage from "./pages/Food/Food";
 import MedicationPage from "./pages/Medication/Medication";
 import ActivityPage from "./pages/Activity/Activity";
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage";
@@ -125,10 +124,6 @@ export default class App extends Component {
     return (<ActivityPage userState={this.state} />)
   }
 
-  foodPagePageWithUserData = () => {
-    return (<FoodPage userState={this.state} />)
-  }
-
   medicationPageWithUserData = () => {
     return (<MedicationPage userState={this.state} />)
   }
@@ -166,7 +161,6 @@ export default class App extends Component {
           <Route exact path="/" component={HomePage} />
           <Route path="/app-home" component={PPApp} />
           <Route exact path="/account" component={this.accountPageWithCallback} />
-          <Route exact path="/food" component={this.foodPagePageWithUserData} />
           <Route exact path="/login" component={this.loginPageWithCallback} />
           <Route exact path="/logout" component={this.logoutPageWithCallback} />
           <Route exact path="/medication" component={this.nextMedicationEvent} />

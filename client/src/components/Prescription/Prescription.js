@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import Food from "../Restriction/Food/Food";
 import './prescription.css';
 import TimeData from './TimeData';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class Prescription extends Component {
@@ -22,7 +22,8 @@ class Prescription extends Component {
     time3: "18:00",
     time4: "",
     time5: "",
-    time6: ""
+    time6: "",
+    pid: {}
   };
 
 
@@ -71,7 +72,7 @@ class Prescription extends Component {
       axios.put("/api/prescriptions/addPrescriptionToUser/" + email, pid )
            .then( () => {
              this.props.action({email, token}) 
-             this.setState({redirect: true})
+             this.setState({pid, redirect: true})
            })
     })
     .catch(err =>{
@@ -80,10 +81,13 @@ class Prescription extends Component {
     console.log(e)
   }
 
+
   render () {
-    if (this.state.redirect) return(<Redirect push to='/food' />)
+    if (this.state.redirect) return(<Food email={this.props.userState.userData.email} token={this.props.userState.token} pid={this.state.pid} action={this.props.action}/>)
+
     return (
       <div className="container" id="medication-page">
+
         <h3> Add a Medication </h3>
         <hr/>
 
