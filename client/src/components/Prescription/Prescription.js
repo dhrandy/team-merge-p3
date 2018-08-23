@@ -81,7 +81,6 @@ class Prescription extends Component {
     console.log(e)
   }
 
-
   render () {
     if (this.state.redirect) return(<Food email={this.props.userState.userData.email} token={this.props.userState.token} pid={this.state.pid} action={this.props.action}/>)
 
