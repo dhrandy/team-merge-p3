@@ -4,11 +4,11 @@ import './topNavbar.css';
 
 export default class TopNavbar extends Component {
   render() {
-    const loginStr = (this.props.userName ? `${this.props.userName}` : 'Not signed in')
+    const loginStr = (this.props.userName)
     return (
       <nav className="navbar bg-dark navbar-dark flex-row-reverse">
         <a className="nav navbar-nav navbar-logo mx-auto">Prescription Planner</a>
-        <Link to="/login" className="nav navbar-nav navbar-logo login">{loginStr} </Link>
+        <Link to="/login" className="nav navbar-nav navbar-right navbar-logo login">{loginStr}</Link>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span className="navbar-toggler-icon"></span>
           </button>
