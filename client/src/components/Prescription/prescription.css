@@ -2,8 +2,12 @@
   text-align: center;
   min-height: 100%;
   padding-bottom: 100px; 
-  }
+}
 
-input{
-  text-align:center;
-  }
+input {
+  text-align: center;
+}
+
+.dayLabel {
+  margin-right: 15px;
+}

@@ -1,41 +1,43 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import Activity from '../Activity/Activity'
 import './food.css';
 import axios from 'axios';
-
-
 
 class Food extends Component {
 
     state = {
-        foodRestriction: ""
+        foodRestriction: "",
+        redirect: false
     };
 
     onChange = (e) => {
-    this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value})
     }
 
-    onSubmit = (e) => {
-    e.preventDefault()
-    axios.put("/api/prescriptions/createPrescription", this.state)
-    .then(res => {
-        let email = this.props.userState.userData.email
-        let pid = {_id: res.data._id}
-        axios.put("/api/prescriptions/addPrescriptionToUser/" + email, pid )
-    })
-    console.log(e)
+    onClick = (e) => {
+        e.preventDefault()
+
+        let email = this.props.email
+        let token = this.props.token
+        let foodRestrictions = []
+        if(this.state.foodRestriction !== "") foodRestrictions.push({description: this.state.foodRestriction})
+        axios.put("/api/prescriptions/updatePrescription/"+this.props.pid._id, {foodRestrictions: foodRestrictions})
+        .then(res => {
+             this.props.action({email, token}) 
+             this.setState({redirect: true})
+        })
     }
     
     render() {
+        if (this.state.redirect) return(<Activity email={this.props.email} token={this.props.token} pid={this.props.pid} action={this.props.action}/>)
+
         return (
             <div className="foodpage">
                 <h4>Please enter any food restrictions associated with the medication</h4>
-                <input type="text" id="food" aria-describedby="" placeholder="Food Restriction" name="name" value={this.state.name} onChange={this.onChange} />
+                <input type="text" id="food" aria-describedby="" placeholder="Food Restriction" name="foodRestriction" value={this.state.foodRestriction} onChange={this.onChange} />
                     <br/>
                     <br/>
-                <Link to="/activity" >
-                    <button onSubmit={this.onSubmit} type="submit" className="btn btn-secondary">Next</button> 
-                </Link>
+                    <button onClick={this.onClick} type="submit" className="btn btn-secondary">Next</button> 
             </div>
 
         );
