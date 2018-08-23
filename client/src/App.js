@@ -8,14 +8,15 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import AccountPage from "./pages/Account/Account";
 import FoodPage from "./pages/Food/Food";
 import MedicationPage from "./pages/Medication/Medication";
-import ActivityPage from "./pages/Activity/Activity";
 import PrescriptionPage from "./pages/Prescription/PrescriptionPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import Error from "./pages/Error/Error";
 import News from "./pages/News/News";
 import HomePageNews from "./pages/HomePageNews/HomePageNews";
 import axios from "axios";
-import MedPage from "./pages/MedRestriction/Medrestriction"
+import MedPage from "./pages/MedPage/MedPage";
+import FoodPagem from "./pages/FoodPage/FoodPage";
+import ActivityPage from './pages/ActivityPage/ActivityPage';
 
 export default class App extends Component {
   state = {
@@ -31,10 +32,10 @@ export default class App extends Component {
   }
 
   componentDidMount = () => {
-    if(this.state.token === "") {
+    if (this.state.token === "") {
       const email = sessionStorage.getItem('p3State-email');
       const token = sessionStorage.getItem('p3State-token');
-      if ( token ) {
+      if (token) {
         axios.get("/api/prescriptions/getUserData/" + email)
           .then(res => {
             let userData = res.data
@@ -54,7 +55,7 @@ export default class App extends Component {
       //
       //  set state to an init state... reusing the method below
       //
-      this.setUserEmailState({email: clientObj.email})
+      this.setUserEmailState({ email: clientObj.email })
     }
     else {
       axios.get("/api/prescriptions/getUserData/" + clientObj.email)
@@ -96,14 +97,14 @@ export default class App extends Component {
   // 
   //////////////////////////////////////////////////////////////////////////////////////////////////
   removePrescription = (id) => {
-    let pid = {_id: id}
-    axios.delete("/api/prescriptions/removePrescriptionFromUser/" + this.state.userData.email, {data: pid} )
+    let pid = { _id: id }
+    axios.delete("/api/prescriptions/removePrescriptionFromUser/" + this.state.userData.email, { data: pid })
       .then(res => {
-          let clientObj = {
-            token: this.state.token,
-            email: this.state.userData.email
-          }
-          this.setUserState(clientObj)
+        let clientObj = {
+          token: this.state.token,
+          email: this.state.userData.email
+        }
+        this.setUserState(clientObj)
       })
       .catch(err => console.log(err))
   }
@@ -158,7 +159,13 @@ export default class App extends Component {
     return (<RegisterPage userState={this.state} action={this.setUserEmailState} />)
   }
 
+  foodPageWithUserData = () => {
+    return (<FoodPagem userState={this.state} />)
+  }
 
+  activityPageWithUserData = () => {
+    return (<ActivityPage userState={this.state} />)
+  }
   render() {
     return (
       < BrowserRouter >
@@ -176,7 +183,9 @@ export default class App extends Component {
           <Route exact path="/news" component={this.newsPageWithUserData} />
           <Route exact path="/privacy-policy" component={PrivacyPolicy} />
           <Route exact path="/news-homepage" component={HomePageNews} />
-          <Route exact path="/medrestriction" component={this.medPageWithUserData} />
+          <Route exact path='/MedPage' component={this.medPageWithUserData} />
+          <Route exact path='/FoodPage' component={this.foodPageWithUserData} />
+          <Route exact path='/ActivityPage' component={this.activityPageWithUserData} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter >
