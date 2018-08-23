@@ -40,7 +40,7 @@ class Login extends Component {
 			<div className="container" id="login-section">
 				<h3>Sign In</h3>
 				<hr />
-				<form id="login-form"onSubmit = {this.onSubmit}>
+				<form id="login-form" onSubmit = {this.onSubmit}>
 					<div className="form-group">
 						<label id="exampleInputEmail1">Email address</label>
 						<input type="email" className={classnames("form-control", {"is-invalid": errors.email})} aria-describedby="emailHelp" placeholder="Enter email" name="email" value={this.state.email} onChange={this.onChange} />

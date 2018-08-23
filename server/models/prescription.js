@@ -37,7 +37,7 @@ const PrescriptionSchema = new Schema({
     },
     dosageDays: [childDay],
     dosageTime: [childTime],
-    timezone: {
+    timeZone: {
        type: String
     },
     activityRestrictions: [childActivity],
