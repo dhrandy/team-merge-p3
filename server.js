@@ -6,13 +6,14 @@ const passport = require("passport")
 const mongoose = require("mongoose")
 const users = require("./server/routes/api/users")
 const prescriptions = require("./server/routes/api/prescriptions")
+const moment = require('moment')
 
 
 //CONNECT TO Mongo
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/p3")
     .catch( (err) => {
-        console.log( err )
+        console.log( "ERROR: " + err )
     })
 
 const app = express();
@@ -57,43 +58,55 @@ const CronJob = require("cron").CronJob;
 //
 // Test below will run every 1 minute ( at 00:00:00, 00:01:00, 00:02:00, etc...)
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-const startTimer = () => { 
+const startCronJob = () => { 
   new CronJob('0 */30 * * * *', ()  => {
+    CheckMeds()
     let newTime = new Date().toLocaleTimeString()
     console.log('TEXT THE CUSTOMERS!',newTime);
-    timer()
-    // call the data base query to see if there is an event that needs to be triggered
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // axios.get('/user?ID=12345')
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-
   }, null, true, 'America/New_York');
 }
 
 // ***** CRONGJOBjs END *****
 ///////////////////////////////////////////////////////////
+const Cust = require("./server/models/user")
+const Drugs = require("./server/models/prescription")
 ///////////////////////////////////////////////////////////
-// ***** MOMENTjs START *****
-const moment = require('moment')
+// ***** GET ALL CUSTOMERS AND CHECK TO SEND MESSAGE *****
 
 
-const timer = () => {
-  let test = "12:00"
+let Customers = []
+
+const CheckMeds = () => {
   let now = moment(new Date()).format("HH:mm")
-  console.log(now)
-  if(test === now) {
-    sendTestMessage()
-  }
+  Cust.find({})
+    .then(cust => {
+      Customers.push(cust)
+      Customers.map(x => {
+        x.map(y => {                        //y IS EACH CUSTOMER
+          let z = y.prescriptions           //z  IS EACH PERSCRIPTION
+          for(i=0; i < z.length; i++) {
+            Drugs.findById(z[i])
+            .then(drug=> {
+              drug.dosageTime.map(t =>{     //t IS DOSAGE TIME
+                // console.log(t.time)
+                // console.log(drug.name)
+                // console.log(y.phone)
+                // console.log(y.name)
+                // console.log("*********************")
+                console.log("This ran at " + now)
+                if(now === t.time) {
+                  sendTextMessage(drug.name, y.phone)
+              }
+              })
+              
+            })
+          }
+        })
+      })
+    })  
 }
-  
-// ***** MOMENTjs END *****
 ///////////////////////////////////////////////////////////
+
 // ***** TWILLIO START ****
 //////////////////////////////////////////////////////////
 const twilio = require("twilio")
@@ -103,20 +116,37 @@ var authToken = process.env.TWILIO_TOKEN    // Your Auth Token from www.twilio.c
 
 var client = new twilio(accountSid, authToken)
 
-const sendTestMessage = () => {
+const sendTextMessage = (medication, phone) => {
   client.messages.create({
-      body: 'Hello from Node',
-      to: '+18454221708',  // Text this number
+      body: 'Hello it is time to take ' +" " + medication + " " + "medication",
+      to: "'+1" + phone + "'",  // Text this number
       from: '+19287234758' // From a valid Twilio number
   })
   .then((message) => console.log(message.sid))
 }
 
 
+const TestMessage = () => {
+  client.messages.create({
+      body: 'TEST from the server',
+      to: '+1',  // Text this number
+      from: '+19287234758' // From a valid Twilio number
+  })
+  .then((message) => {
+    console.log(message.sid)
+  })
+  .catch(e => { console.error('Got an error:', e.code, e.message); })
+}
+
+
 ///////////////////////////////////////////////////////////
 // ***** TWILLIO END  ****
+
+
 //Server is listening
 app.listen(PORT, () => {
-  startTimer()
+  // CheckMeds() 
+  // TestMessage()
+  startCronJob()
   console.log(`Server listening on port ${PORT}!`);
 });
