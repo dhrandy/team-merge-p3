@@ -146,7 +146,7 @@ export default class App extends Component {
   }
 
   nextMedicationEvent = () => {
-    return (<AccountPage allMedications={false} userData={this.state.userData} action={this.setUserState} />)
+    return (<AccountPage allMedications={false} userData={this.state.userData} removePrescription={this.removePrescription} />)
   }
 
 
