@@ -19,14 +19,14 @@ export default class NavHome extends Component {
                       <Link to="/app-home" className="nav-link">App</Link>
                     </li>
                     <li className="nav-item">
-                        <Link to="/news-homepage" className="nav-link">Medical News</Link>
+                      <Link to="/news-homepage" className="nav-link">Medical News</Link>
                     </li>
                     <li className="nav-item">
                         <a className="nav-link" href="mailto:prescriptionplanner@prescriptionplanner.com">
                         Contact</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="/privacy-policy">Privacy</a>
+                      <Link to="/privacy-policy" className="nav-link">Privacy</Link>
                     </li>
                   </ul>
                 </div>
