@@ -4,10 +4,10 @@ import './topNavbar.css';
 
 export default class TopNavbar extends Component {
   render() {
-    const loginStr = (this.props.userName ? `${this.props.userName}` : 'Not signed in')
+    const loginStr = this.props.userName
     let isAuthenticated
     //  ***** Change display for logged in user *****
-    if(loginStr != "Not signed in"){
+    if(loginStr != ""){
       isAuthenticated = true
     }
       const authLinks = (
