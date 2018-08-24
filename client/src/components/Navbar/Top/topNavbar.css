@@ -8,8 +8,7 @@ a.nav.navbar-nav.navbar-logo.mx-auto {
 a.nav.navbar-nav.navbar-logo.login {
     color: white;
     font-size: 15px;
-    text-align: right;
-    margin-right: 30px;
+    padding-left: 10px;
 }
 
 .navbar-logo {
@@ -19,3 +18,7 @@ a.nav.navbar-nav.navbar-logo.login {
 .topnav {
     padding-right: 30px;
 }
+
+/* .navbar-logo {
+    text-align: right;
+} */

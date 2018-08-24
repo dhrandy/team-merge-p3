@@ -1,42 +1,42 @@
 import React, {Component} from 'react';
+import Medication from '../Medication/Medication'
 import './activity.css'
-import { Link } from 'react-router-dom';
 import axios from 'axios';
-
-
 
 class Activity extends Component {
 
   state = {
-    activityRestriciton: ""
+    activityRestriction: "",
+    redirect: false
   }
   
   onChange = (e) => {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  onSubmit = (e) => {
+  onClick = (e) => {
     e.preventDefault()
-    axios.put("/api/prescriptions/createPrescription", this.state)
-    .then(res => {
-      let email = this.props.userState.userData.email
-      let pid = {_id: res.data._id}
-      axios.put("/api/prescriptions/addPrescriptionToUser/" + email, pid )
-    })
-    console.log(e)
+        let email = this.props.email
+        let token = this.props.token
+        let activityRestrictions = []
+        if(this.state.activityRestriction !== "") activityRestrictions.push({description: this.state.activityRestriction})
+        axios.put("/api/prescriptions/updatePrescription/"+this.props.pid._id, {activityRestrictions: activityRestrictions})
+        .then(res => {
+             this.props.action({email, token}) 
+             this.setState({redirect: true})
+        })
   }
 
 
   render () {
+        if (this.state.redirect) return(<Medication email={this.props.email} token={this.props.token} pid={this.props.pid} action={this.props.action}/>)
     return (
       <div id="activitypage">
         <h4> Activity Restriction </h4>
         <h6> Please enter any activity restriction associated with the medication</h6>
-        <input type="text" aria-describedby="" placeholder="Activity Restriction" value={this.state.value} onChange={this.onChange} />
+        <input type="text" aria-describedby="" placeholder="Activity Restriction" name="activityRestriction" value={this.state.activityRestriction} onChange={this.onChange} />
           <br/><br/>
-        <Link to="/medrestriction" >
-        <button type="submit" className="btn btn-secondary">Next</button> 
-        </Link> 
+        <button onClick={this.onClick} type="submit" className="btn btn-secondary">Next</button> 
 
       </div>
       
