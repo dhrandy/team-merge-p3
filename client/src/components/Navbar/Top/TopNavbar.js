@@ -5,6 +5,41 @@ import './topNavbar.css';
 export default class TopNavbar extends Component {
   render() {
     const loginStr = (this.props.userName ? `${this.props.userName}` : 'Not signed in')
+    let isAuthenticated
+    //  ***** Change display for logged in user *****
+    if(loginStr != "Not signed in"){
+      isAuthenticated = true
+    }
+      const authLinks = (
+      <ul className="navbar-nav"> 
+        <li className="nav-item">
+          <Link className="nav-link" to="/account">All Prescriptions</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/medication">Medication</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/prescription">Add a Medication</Link>
+        </li> 
+        {/* Karina's */}
+        <li className="nav-item">
+          <Link className="nav-link" to="/logout">Logout</Link>
+        </li>
+      </ul>
+      )
+
+      const guestLinks = (
+        <ul className="navbar-nav">
+        <li className="nav-item">
+          <Link className="nav-link" to="/">Home</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">Login</Link>
+        </li>
+        </ul>
+        
+      )
+  
     return (
       <nav className="navbar bg-dark navbar-dark flex-row-reverse">
         <a className="nav navbar-nav navbar-logo mx-auto">Prescription Planner</a>
@@ -12,34 +47,10 @@ export default class TopNavbar extends Component {
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span className="navbar-toggler-icon"></span>
           </button>
-        <div className="collapse navbar-collapse" id="collapsibleNavbar">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Login</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/account">All Prescriptions</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/medication">Medication</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/diet">Diet</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/health">Health</Link>
-            </li> 
-            {/* Karina's  */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/prescription">Add a Medication</Link>
-            </li> 
-            {/* Karina's */}
-            <li className="nav-item">
-              <Link className="nav-link" to="/logout">Logout</Link>
-            </li> 
-          </ul>
+        <div className="collapse navbar-collapse" id="collapsibleNavbar"> 
+          {isAuthenticated ? authLinks : guestLinks}
         </div> 
       </nav>
-    );
+    )
   }
 }

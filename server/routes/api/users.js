@@ -21,6 +21,14 @@ router.post("/register", (req, res) => {
 	    console.log('DEBUG - routes/api/users.js register', errors)
 		return res.status(400).json(errors)
 	}
+	User.findOne({phone: req.body.phone})
+		.then(user => {
+			if(user) {
+				errors.phone = "Phone number already exists"
+				console.log(errors.phone)
+				return res.status(400).json(errors)
+			}
+		})
 	User.findOne({email: req.body.email})
 		.then(user => {
 			if(user) {
