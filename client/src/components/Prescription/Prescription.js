@@ -82,7 +82,13 @@ class Prescription extends Component {
   }
 
   render () {
-    if (this.state.redirect) return(<Food email={this.props.userState.userData.email} token={this.props.userState.token} pid={this.state.pid} action={this.props.action}/>)
+    if (this.state.redirect) return(
+        <Food 
+            email={this.props.userState.userData.email} 
+            token={this.props.userState.token} 
+            pid={this.state.pid} 
+            pName={this.state.name}
+            action={this.props.action}/>)
 
     return (
       <div className="container" id="medication-page">

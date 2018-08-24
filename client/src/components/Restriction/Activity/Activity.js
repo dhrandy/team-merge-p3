@@ -29,7 +29,7 @@ class Activity extends Component {
 
 
   render () {
-        if (this.state.redirect) return(<Medication email={this.props.email} token={this.props.token} pid={this.props.pid} action={this.props.action}/>)
+        if (this.state.redirect) return(<Medication {...this.props}/>)
     return (
       <div id="activitypage">
         <h4> Activity Restriction </h4>
@@ -47,5 +47,3 @@ class Activity extends Component {
 
 
 export default Activity
-
-

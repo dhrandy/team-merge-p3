@@ -6,6 +6,7 @@ const passport = require("passport")
 const mongoose = require("mongoose")
 const users = require("./server/routes/api/users")
 const prescriptions = require("./server/routes/api/prescriptions")
+const medications = require("./server/routes/api/medications")
 const moment = require('moment')
 
 
@@ -42,6 +43,7 @@ require("./server/config/passport")(passport)
 //USER ROUTES
 app.use("/api/users", users)
 app.use("/api/prescriptions", prescriptions)
+app.use("/api/medications", medications)
 
 // INDEX ROUTE
 app.get("/", (req, res) => {
