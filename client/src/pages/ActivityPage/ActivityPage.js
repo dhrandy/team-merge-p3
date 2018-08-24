@@ -8,7 +8,7 @@ const ActivityPage = props => (
     <div>
         <TopNavbar userName={props.userState.userData.name} />
         <Header />
-        <ActivityComponent />
+        <ActivityComponent {...props} />
         <BottomNavbar />
     </div>
 );
