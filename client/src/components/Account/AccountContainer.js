@@ -93,7 +93,7 @@ class AccountContainer extends Component {
                 </div>
     
                 <div className='row'>
-                    <div className='col-md'>
+                    <div className='col-md table-scroll'>
                         <table className="table table-striped">
                             <thead>
                                 <tr>
