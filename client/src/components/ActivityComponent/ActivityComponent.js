@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Activity from './Activity'
 import './Activity.css';
 
 
@@ -13,11 +14,10 @@ class ActivityComponent extends Component {
             <div>
 
                 {this.props.userState.userData.prescriptions.map((drug, index) => {
-
-                    drug.activityRestrictions.map(a => {
-                        return (<h3>{a} </h3>)
-                    })
-                    return (<h3>{drug.name}</h3>)
+                    return ( <Activity key={index}
+                        drugName={drug.name}
+                        activityRestrictions={drug.activityRestrictions}
+                    />)
                 })}
 
             </div>
