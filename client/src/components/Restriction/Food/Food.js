@@ -29,7 +29,7 @@ class Food extends Component {
     }
     
     render() {
-        if (this.state.redirect) return(<Activity email={this.props.email} token={this.props.token} pid={this.props.pid} action={this.props.action}/>)
+        if (this.state.redirect) return( <Activity {...this.props}/>)
 
         return (
             <div className="foodpage">
