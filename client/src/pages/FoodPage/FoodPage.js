@@ -8,7 +8,7 @@ const FoodPagem = props => (
     <div>
         <TopNavbar userName={props.userState.userData.name} />
         <Header />
-        <FoodComponent />
+        <FoodComponent {...props} />
         <BottomNavbar />
     </div>
 );

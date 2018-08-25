@@ -8,7 +8,7 @@ const MedPage = props => (
     <div>
         <TopNavbar userName={props.userState.userData.name} />
         <Header />
-        <MedComponent />
+        <MedComponent {...props} />
         <BottomNavbar />
     </div>
 );
