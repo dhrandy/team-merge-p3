@@ -7,10 +7,9 @@ class FoodComponent extends Component {
 
   render() {
 
-    console.log("Michelle", this.props)
     return (
 
-      <div>
+      <div className='container'>
         <h1 id='fr'> Food Restrictions </h1>
         {this.props.userState.userData.prescriptions.map((drug, index) => {
           return (<Food key={index}

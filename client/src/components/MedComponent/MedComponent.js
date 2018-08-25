@@ -7,11 +7,9 @@ class MedComponent extends Component {
 
   render() {
 
-    console.log("Michelle", this.props)
-
     return (
 
-      <div>
+      <div className='container'>
         <h1 id='mr' >Medication Restrictions</h1>
         {this.props.userState.userData.prescriptions.map((drug, index) => {
           return (<Med key={index}

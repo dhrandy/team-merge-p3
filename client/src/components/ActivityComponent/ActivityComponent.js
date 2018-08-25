@@ -7,11 +7,9 @@ class ActivityComponent extends Component {
 
     render() {
 
-        console.log("Michelle", this.props)
-
         return (
 
-            <div>
+            <div className='container'>
                 <h1 id='ar' >Activity Restrictions</h1>
                 {this.props.userState.userData.prescriptions.map((drug, index) => {
                     return (<Activity key={index}

@@ -36,6 +36,7 @@ class DrugBankMedInteractions extends Component {
                     })
                  }
                  else {
+                   userMessage = "Drug Bank search complete.  No results found"
                    this.setState({dbQueryComplete: true})
                  }
             })
@@ -52,7 +53,7 @@ class DrugBankMedInteractions extends Component {
     render() {
         if (this.state.dbQueryComplete) {
             return(
-                <div>
+                <div className='container'>
                     <div className='row'>
                         <h1>{this.state.userMessage}</h1>
                     </div>
