@@ -12,9 +12,9 @@ class ActivityComponent extends Component {
         return (
 
             <div>
-
+                <h1 id='ar' >Activity Restrictions</h1>
                 {this.props.userState.userData.prescriptions.map((drug, index) => {
-                    return ( <Activity key={index}
+                    return (<Activity key={index}
                         drugName={drug.name}
                         activityRestrictions={drug.activityRestrictions}
                     />)
@@ -27,9 +27,3 @@ class ActivityComponent extends Component {
 };
 
 export default ActivityComponent
-
-
-// *return (<ActivityComponent key={index}
-//                         foodRestrictions={drug.foodRestrictions.length}
-//                     />)
-// <h1>{drug.name}</h1>

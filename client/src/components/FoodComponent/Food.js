@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Activity = props => (
+const Food = props => (
     <div>
         <h1> {props.drugName} </h1>
-        {props.activityRestrictions.map((a, index) => {
+        {props.foodRestrictions.map((a, index) => {
             return (<p key={`a${index}`}> {a.description} </p>)
         })}
     </div>
 )
 
-export default Activity
+export default Food
